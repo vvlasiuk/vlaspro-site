@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Після підключення домену розкомментуйте рядок і вкажіть свою адресу:
-# Sitemap: https://ваш-домен/sitemap.xml
+Sitemap: https://vvlasiuk.github.io/vlaspro-site/sitemap.xml
