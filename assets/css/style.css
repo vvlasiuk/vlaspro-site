@@ -149,6 +149,9 @@ li::marker { color: var(--accent); }
 .hero::before {
   content: ''; position: absolute; inset: 0; z-index: -2;
   background: url('../img/banner.jpg') center 42% / cover no-repeat;
+  /* браузери з підтримкою image-set візьмуть webp (26 КБ замість 86 КБ) */
+  background-image: image-set(url('../img/banner.webp') type('image/webp'),
+                              url('../img/banner.jpg') type('image/jpeg'));
 }
 .hero::after {
   content: ''; position: absolute; inset: 0; z-index: -1;
