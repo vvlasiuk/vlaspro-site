@@ -117,9 +117,14 @@ li::marker { color: var(--accent); }
 @media (max-width: 640px) {
   .site-head__inner { flex-wrap: wrap; justify-content: center; min-height: 0; padding-block: .5rem; }
   .brand { margin-inline: auto; }
-  .nav { margin-left: 0; width: 100%; justify-content: center; gap: .15rem; }
+  /* чотири пункти меню не завжди вміщаються в один рядок — дозволяємо перенос */
+  .nav { margin-left: 0; width: 100%; justify-content: center; gap: .15rem; flex-wrap: wrap; }
   .nav .btn { display: none; }
   .nav a { font-size: .92rem; padding: .45rem .5rem; }
+}
+
+@media (max-width: 400px) {
+  .nav a { font-size: .88rem; padding: .4rem .35rem; }
 }
 
 /* --- buttons ------------------------------------------------------------ */
@@ -232,7 +237,8 @@ li::marker { color: var(--accent); }
 
 /* --- teaser grid -------------------------------------------------------- */
 .grid { display: grid; gap: clamp(1rem, 2.5vw, 1.5rem); }
-.grid--3 { grid-template-columns: repeat(auto-fit, minmax(275px, 1fr)); }
+/* min() не дає колонці стати ширшою за екран на вузьких пристроях */
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(min(275px, 100%), 1fr)); }
 
 .tile {
   display: flex; flex-direction: column; gap: .7rem;
@@ -408,6 +414,166 @@ details.more[open] > summary { margin-bottom: .4rem; }
   display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; justify-content: space-between;
   font-size: .87rem; color: rgba(255, 255, 255, .6);
 }
+
+/* --- сторінка «AI-агенти та Telegram-боти» ------------------------------- */
+
+/* внутрішня навігація по розділах сторінки */
+.jump { padding-bottom: 0; }
+.jump__list {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center;
+}
+.jump__list li { margin: 0; }
+.jump__list a {
+  display: inline-block;
+  padding: .45rem .95rem;
+  font-size: .92rem; font-weight: 600; text-decoration: none;
+  color: var(--accent-2); background: var(--accent-bg);
+  border: 1px solid transparent; border-radius: 999px;
+}
+.jump__list a:hover { background: #d5ebee; border-color: #b6dde2; color: var(--accent-2); }
+
+/* сітка у дві колонки */
+.grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
+
+/* картка-визначення: бот проти AI-агента */
+.def { border-top: 4px solid var(--line); }
+.def--accent { border-top-color: var(--accent); }
+.def__tag {
+  font: 700 .78rem/1 var(--sans); letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: .8rem;
+}
+.def--accent .def__tag { color: var(--accent-2); }
+.def h3 { font-size: 1.2rem; }
+.def__note {
+  margin-top: 1.2rem; padding-top: .9rem;
+  border-top: 1px dashed var(--line);
+  font-size: .93rem; color: var(--ink-3);
+}
+
+/* врізка з акцентом */
+.callout {
+  margin-top: clamp(1.6rem, 4vw, 2.4rem);
+  padding: clamp(1.1rem, 3vw, 1.6rem) clamp(1.2rem, 3vw, 1.8rem);
+  background: var(--accent-bg);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.callout--plain { background: transparent; border-left-color: var(--line); color: var(--ink-3); }
+.callout p + p { margin-top: .8rem; }
+
+/* ланцюжок «як проходить запит» */
+.h-mid { text-align: center; font-size: 1.15rem; margin-bottom: 1.4rem; }
+.mt-lg { margin-top: clamp(1.8rem, 5vw, 2.8rem); }
+.section--top-0 { padding-top: clamp(1.8rem, 5vw, 3rem); }
+
+.flow {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 1.6rem 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
+}
+.flow__step {
+  position: relative; margin: 0;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.4rem 1.1rem 1.2rem;
+  box-shadow: var(--shadow);
+}
+.flow__num {
+  position: absolute; top: -14px; left: 1.1rem;
+  width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent); color: #fff;
+  font: 700 .85rem/1 var(--sans);
+  border-radius: 50%;
+}
+.flow__step h4 {
+  font-family: var(--sans); font-size: 1rem; font-weight: 700;
+  margin: .3rem 0 .45rem;
+}
+.flow__step p { font-size: .92rem; color: var(--ink-3); margin: 0; }
+
+/* стрілка між кроками — лише коли вони справді стоять поруч */
+@media (min-width: 1000px) {
+  .flow__step::after {
+    content: ''; position: absolute; top: 50%; right: -.72rem;
+    width: .5rem; height: .5rem;
+    border-right: 2px solid #b6c6d6; border-top: 2px solid #b6c6d6;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .flow__step:last-child::after { display: none; }
+}
+
+/* картка-перевага */
+.feat { display: flex; flex-direction: column; padding: 1.6rem 1.5rem; }
+.feat__ico {
+  flex: none; width: 44px; height: 44px; margin-bottom: 1rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--accent-bg); color: var(--accent-2); border-radius: 12px;
+}
+.feat__ico svg { width: 22px; height: 22px; fill: currentColor; }
+.feat h3 { font-family: var(--sans); font-size: 1.06rem; margin-bottom: .55rem; }
+.feat p, .feat li { font-size: .95rem; color: var(--ink-3); }
+.feat ul { margin-bottom: 0; }
+.feat li:last-child { margin-bottom: 0; }
+
+/* етапи розробки */
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+.steps .step {
+  position: relative; margin: 0;
+  display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 1.1rem;
+  padding-bottom: clamp(1.6rem, 4vw, 2.2rem);
+}
+.step__mark { position: relative; }
+.step__mark span {
+  position: relative; z-index: 1;
+  width: 56px; height: 56px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--card); color: var(--accent-2);
+  border: 2px solid var(--accent); border-radius: 50%;
+  font: 700 1.02rem/1 var(--sans);
+  font-variant-numeric: tabular-nums;
+}
+/* вертикальна лінія, що з'єднує кроки */
+.step:not(:last-child) .step__mark::before {
+  content: ''; position: absolute; left: 50%; top: 56px; bottom: -1rem;
+  width: 2px; margin-left: -1px; background: var(--line);
+}
+.step__body {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.3rem 1.4rem;
+}
+.step__body h3 { font-family: var(--slab); font-size: 1.15rem; margin-bottom: .3rem; }
+.step__meta {
+  font: 600 .82rem/1.4 var(--sans); letter-spacing: .06em; text-transform: uppercase;
+  color: var(--accent-2); margin-bottom: .9rem;
+}
+.step__out {
+  margin-top: 1rem; padding-top: .85rem;
+  border-top: 1px dashed var(--line);
+  font-size: .93rem; color: var(--ink-3);
+}
+
+@media (max-width: 560px) {
+  .steps .step { grid-template-columns: 44px minmax(0, 1fr); gap: .8rem; }
+  .step__mark span { width: 44px; height: 44px; font-size: .92rem; }
+  .step:not(:last-child) .step__mark::before { top: 44px; }
+  .step__body { padding: 1.1rem 1.1rem; }
+}
+
+/* часті питання */
+.faq { max-width: 78ch; margin-inline: auto; }
+.faq details.more { margin-top: 0; border-top: 0; border-bottom: 1px solid var(--line); }
+.faq details.more > summary {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  width: 100%; margin: 0; padding: 1.05rem .6rem;
+  font-family: var(--slab); font-size: 1.03rem; color: var(--ink);
+  background: transparent; border-radius: 10px;
+}
+.faq details.more > summary:hover { background: var(--accent-bg); color: var(--accent-2); }
+.faq details.more > summary::after { margin-left: 0; }
+.faq details.more[open] > summary { margin-bottom: 0; color: var(--accent-2); }
+.faq .more__body { padding: 0 .6rem 1.2rem; }
 
 /* --- misc --------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {

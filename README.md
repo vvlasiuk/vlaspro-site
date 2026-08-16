@@ -9,6 +9,7 @@
 ```
 vlaspro_html/
 ├── index.html            головна
+├── ai-agents.html        AI-агенти та Telegram-боти (інтеграція, переваги, етапи розробки)
 ├── cases.html            кейси (5 кейсів + презентація у слайдері)
 ├── contacts.html         контакти
 ├── 404.html              сторінка помилки (підхоплюють майже всі статичні хостинги)
@@ -56,7 +57,8 @@ python -m http.server 8123
 - **Кольори, розміри, відступи** — у `assets/css/style.css`, зверху в блоці `:root`
   (`--ink`, `--accent`, `--bg` і т.д.). Змінили одну змінну — змінився весь сайт.
 - **Картинки** — покласти новий файл у `assets/img/` і замінити ім'я у `<picture>`.
-- **Меню** — три однакові блоки `<nav class="nav">` у кожному html-файлі.
+- **Меню** — однакові блоки `<nav class="nav">` у кожному html-файлі (плюс список
+  «Сторінки» в підвалі). Додаєте сторінку — оновіть їх усюди й у `sitemap.xml`.
 
 ## Публікація
 
@@ -70,9 +72,9 @@ Pages роздає файли прямо з гілки `main`, тож будь-�
 
 Абсолютні адреси зашиті у трьох місцях — їх треба замінити на новий домен:
 
-1. `og:url` і `og:image` у `index.html`, `cases.html`, `contacts.html`
+1. `og:url` і `og:image` у `index.html`, `ai-agents.html`, `cases.html`, `contacts.html`
    (потрібні для прев'ю посилань у Telegram, Viber і соцмережах).
-2. `<link rel="canonical">` у тих самих трьох файлах.
+2. `<link rel="canonical">` у тих самих чотирьох файлах.
 3. `sitemap.xml` і рядок `Sitemap:` у `robots.txt`.
 
 Швидкий спосіб: пошук-заміна `https://vvlasiuk.github.io/vlaspro-site/` →
