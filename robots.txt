@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vvlasiuk.github.io/vlaspro-site/sitemap.xml
+Sitemap: https://vlaspro.com.ua/sitemap.xml
