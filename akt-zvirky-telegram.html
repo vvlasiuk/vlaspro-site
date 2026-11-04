@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Акт звірки в Telegram з 1С/BAS — кейс VLASPRO</title>
+<meta name="description" content="Кейс VLASPRO: Telegram-бот, інтегрований з обліковою базою, видає контрагентам акт звірки у PDF за обраний період — без дзвінків у бухгалтерію, цілодобово. Понад 300 актів на місяць.">
+<meta name="theme-color" content="#1b2740">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="VLASPRO">
+<meta property="og:title" content="Акт звірки в Telegram з 1С/BAS — кейс VLASPRO">
+<meta property="og:description" content="Контрагент сам обирає період і миттєво отримує акт звірки у PDF просто в Telegram. Як це влаштовано і що дало компанії.">
+<meta property="og:url" content="https://vlaspro.com.ua/akt-zvirky-telegram.html">
+<meta property="og:image" content="https://vlaspro.com.ua/assets/img/case-1.jpg">
+<meta property="og:locale" content="uk_UA">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://vlaspro.com.ua/akt-zvirky-telegram.html">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vlaspro.com.ua/#organization",
+      "name": "VLASPRO",
+      "url": "https://vlaspro.com.ua/",
+      "logo": "https://vlaspro.com.ua/apple-touch-icon.png",
+      "email": "vlaspro.com.ua@gmail.com",
+      "telephone": "+380672675820",
+      "sameAs": [
+        "https://t.me/VLAS_PRO_UA",
+        "https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vlaspro.com.ua/#website",
+      "url": "https://vlaspro.com.ua/",
+      "name": "VLASPRO",
+      "inLanguage": "uk-UA",
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://vlaspro.com.ua/akt-zvirky-telegram.html#article",
+      "headline": "Акт звірки в Telegram: контрагент отримує документ сам",
+      "description": "Кейс VLASPRO: Telegram-бот, інтегрований з обліковою базою, видає контрагентам акт звірки у PDF за обраний період — без дзвінків у бухгалтерію, цілодобово.",
+      "url": "https://vlaspro.com.ua/akt-zvirky-telegram.html",
+      "image": "https://vlaspro.com.ua/assets/img/case-1.jpg",
+      "datePublished": "2026-11-04",
+      "dateModified": "2026-11-04",
+      "inLanguage": "uk-UA",
+      "author": { "@id": "https://vlaspro.com.ua/#organization" },
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" },
+      "isPartOf": { "@id": "https://vlaspro.com.ua/#website" },
+      "about": {
+        "@type": "Service",
+        "name": "Telegram-бот для видачі актів звірки з 1С/BAS",
+        "serviceType": "Автоматизація бізнес-процесів",
+        "provider": { "@id": "https://vlaspro.com.ua/#organization" }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vlaspro.com.ua/akt-zvirky-telegram.html#faq",
+      "inLanguage": "uk-UA",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чи безпечно віддавати контрагенту дані з бази?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Контрагент не отримує доступу до бази — він отримує документ. Бот звертається до обмеженого набору сервісних методів, кожен з яких повертає дані лише того контрагента, від імені якого прийшов запит. Права перевіряються на боці облікової системи, а всі звернення журналюються."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи не зламається бот після оновлення конфігурації?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Доопрацювання винесені в окремі модулі й не переписують типовий код, тому стандартні оновлення проходять як зазвичай. Після великих релізів платформи ми перевіряємо роботу сервісів — це частина підтримки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи можна так само видавати інші документи?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Так, і це найдешевша частина роботи. Основні витрати — на інтеграційний шар, а він уже побудований. На ту саму точку входу підключаються рахунки, накладні, залишки, дебіторка чи статус замовлення."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Скільки часу займає впровадження такого сценарію?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Залежить від стану бази й кількості сценаріїв. Ми починаємо з безкоштовного аудиту процесу, далі збираємо прототип на реальних даних — саме на ньому видно строк і обсяг робіт, а не на словах."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Головна", "item": "https://vlaspro.com.ua/" },
+        { "@type": "ListItem", "position": 2, "name": "Кейси", "item": "https://vlaspro.com.ua/cases.html" },
+        { "@type": "ListItem", "position": 3, "name": "Акт звірки в Telegram", "item": "https://vlaspro.com.ua/akt-zvirky-telegram.html" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Перейти до основного вмісту</a>
+
+<header class="site-head">
+  <div class="wrap site-head__inner">
+    <a class="brand" href="index.html">VLAS<span>PRO</span></a>
+    <nav class="nav" aria-label="Основна навігація">
+      <a href="index.html">Головна</a>
+      <a href="ai-agents.html">AI-агенти</a>
+      <a href="cases.html">Кейси</a>
+      <a href="contacts.html">Контакти</a>
+      <a class="btn btn--sm" href="https://t.me/vlsv00" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.8 15.6 9.6 20c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.8.4 1.3.2 1.5-.7L21.9 4.9c.3-1.1-.4-1.6-1.1-1.3L2.9 10.5c-1.1.4-1.1 1-.2 1.3l4.5 1.4L17.6 6.6c.5-.3.9-.1.5.2z"/></svg>
+        Telegram
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="wrap">
+      <p class="pagehead__mark">VLAS PRO</p>
+      <span class="kicker">Кейс 01 · Telegram-бот + облікова база</span>
+      <h1>Акт звірки в Telegram: контрагент отримує документ сам</h1>
+      <p>Бухгалтерія формувала понад 300 актів звірки на місяць руками. Тепер їх видає бот —
+        за обраний період, у PDF, цілодобово й без жодного дзвінка</p>
+    </div>
+  </section>
+
+  <nav class="section section--tight jump" aria-label="Розділи сторінки">
+    <div class="wrap">
+      <ul class="jump__list">
+        <li><a href="#task">Задача</a></li>
+        <li><a href="#solution">Рішення</a></li>
+        <li><a href="#how">Як це працює</a></li>
+        <li><a href="#result">Що це дало</a></li>
+        <li><a href="#demo">Спробувати</a></li>
+        <li><a href="#faq">Питання</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section section--top-0" id="task" aria-labelledby="task-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="task-h">Задача: бухгалтерія як довідкове бюро</h2>
+      </div>
+
+      <div class="grid grid--2">
+        <div>
+          <p>Клієнт звернувся з типовою для будь-якої компанії з великою кількістю контрагентів
+            ситуацією. Акт звірки потрібен постійно: перед оплатою, у кінці місяця, під час
+            закриття кварталу, при розбіжностях у взаєморозрахунках. Кожен такий запит приходив
+            у бухгалтерію вручну — дзвінком або листом.</p>
+          <p>Далі бухгалтер відкладав поточну роботу, відкривав базу, формував документ за
+            потрібний період, вивантажував у PDF і надсилав у відповідь. Десятки разів на тиждень,
+            <strong>понад 300 актів на місяць</strong>.</p>
+        </div>
+        <div>
+          <p>Проблема тут не в складності операції — вона елементарна. Проблема в її кількості
+            й у тому, коли вона приходить: завжди посеред іншої роботи. До цього додається
+            людський фактор — не той період, не той контрагент, не та версія документа.</p>
+          <p>І окремо — графік. Запит, який прийшов увечері п&rsquo;ятниці, чекає на відповідь
+            до понеділка, хоча самі дані в базі вже є й не зміняться.</p>
+        </div>
+      </div>
+
+      <figure class="case__media" style="margin-top: 1.6rem;">
+        <picture>
+          <source srcset="assets/img/case-1.webp" type="image/webp">
+          <img src="assets/img/case-1.jpg" width="1200" height="800" loading="lazy"
+               alt="Акт звірки у Telegram: контрагент отримує PDF-документ у чаті без участі бухгалтера.">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="solution" aria-labelledby="solution-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="solution-h">Рішення: самообслуговування в месенджері</h2>
+        <p>Ми не прискорювали роботу бухгалтера — ми прибрали бухгалтера з цього процесу.</p>
+      </div>
+
+      <p>Замість того щоб обробляти запити швидше, ми передали операцію тому, кому вона потрібна.
+        Telegram-бот на базі власного програмного рішення інтегровано з обліковою базою компанії.
+        Контрагент відкриває чат, обирає період — і за кілька секунд отримує акт звірки у PDF.
+        Без дзвінків. Без очікування. Без участі персоналу.</p>
+
+      <div class="callout">
+        <p><strong>Чому саме Telegram, а не особистий кабінет.</strong> Месенджер уже встановлений
+          у контрагента, не потребує реєстрації, логіна й навчання, працює на будь-якому телефоні
+          та не вимагає ліцензій на робочі місця. Людина робить те, що й завжди — пише в чат.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="how-h">Як це працює</h2>
+        <p>Той самий шлях, яким ходить будь-який наш інтеграційний сценарій.</p>
+      </div>
+
+      <ol class="flow">
+        <li class="flow__step">
+          <span class="flow__num">1</span>
+          <h3>Контрагент</h3>
+          <p>Відкриває бота в Telegram і обирає період, за який потрібна звірка.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">2</span>
+          <h3>Бот</h3>
+          <p>Визначає, від імені якого контрагента прийшов запит, перевіряє права
+            й формує звернення до системи.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">3</span>
+          <h3>Інтеграційний шар</h3>
+          <p>Сервісний метод на боці 1С/BAS — єдина контрольована точка входу,
+            що повертає рівно дані цього контрагента.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">4</span>
+          <h3>Облікова база</h3>
+          <p>Документ формується штатним механізмом системи — тим самим, яким користується
+            бухгалтер.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">5</span>
+          <h3>Результат</h3>
+          <p>Готовий PDF повертається у чат за кілька секунд.</p>
+        </li>
+      </ol>
+
+      <div class="callout">
+        <p><strong>Бот не працює з базою напряму.</strong> Він звертається лише до описаного набору
+          сервісних методів: кожен повертає рівно ті дані, які потрібні для конкретного сценарію.
+          Права перевіряються на боці облікової системи, усі звернення журналюються. Доопрацювання
+          винесені в окремі модулі й не переписують типовий код, тому планові оновлення конфігурації
+          проходять як зазвичай.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="result" aria-labelledby="result-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="result-h">Що це дало компанії</h2>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card def">
+          <p class="def__tag">Бухгалтерія</p>
+          <h3>Операція зникла з робочого дня</h3>
+          <p>Понад 300 ручних формувань на місяць більше не відбуваються взагалі. Звільнився
+            не стільки час на сам документ, скільки увага: бухгалтера більше не висмикують
+            із поточної роботи.</p>
+        </div>
+        <div class="card def def--accent">
+          <p class="def__tag">Контрагенти</p>
+          <h3>Відповідь будь-коли, а не в робочі години</h3>
+          <p>Акт доступний цілодобово й без посередника, зокрема у вихідні та вночі.
+            Для контрагента це рівень сервісу, якого він не чекає від постачальника.</p>
+        </div>
+        <div class="card def">
+          <p class="def__tag">Документи</p>
+          <h3>Менше помилок і суперечок</h3>
+          <p>Документ формує система за заданими правилами, тому зникли помилки ручного
+            введення — не той період чи не той контрагент — і звіряння стало предметним.</p>
+        </div>
+        <div class="card def">
+          <p class="def__tag">Процес</p>
+          <h3>Готовий інтеграційний шар</h3>
+          <p>Побудована точка входу в базу працює і для наступних сценаріїв: залишки,
+            дебіторка, рахунки, статуси замовлень. Кожен наступний бот дешевший за перший.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demo" aria-labelledby="demo-h">
+    <div class="wrap">
+      <div class="trybot trybot--wide">
+        <div class="trybot__main">
+          <p class="trybot__tag">Демо</p>
+          <h2 id="demo-h">Спробуйте самі — просто зараз</h2>
+          <p>Ми відкрили тестового бота, підключеного до тестової бази. Ви можете пройти цей самий
+            сценарій і отримати акт звірки у Telegram — без реєстрації та без домовленостей із нами.</p>
+          <a class="btn trybot__btn" href="https://t.me/demo_ai_agent_vps_bot?start=case1"
+             target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.8 15.6 9.6 20c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.8.4 1.3.2 1.5-.7L21.9 4.9c.3-1.1-.4-1.6-1.1-1.3L2.9 10.5c-1.1.4-1.1 1-.2 1.3l4.5 1.4L17.6 6.6c.5-.3.9-.1.5.2z"/></svg>
+            Відкрити демо-бот
+          </a>
+          <p class="trybot__note">База тестова, дані в ній демонстраційні.</p>
+        </div>
+        <div class="trybot__qr">
+          <img src="assets/img/demo-bot-qr.svg" width="370" height="370" loading="lazy"
+               alt="QR-код на демо-бот VLASPRO у Telegram: t.me/demo_ai_agent_vps_bot">
+          <p>Наведіть камеру телефона</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="faq-h">Часті питання про цей кейс</h2>
+      </div>
+
+      <div class="faq">
+        <details class="more">
+          <summary>Чи безпечно віддавати контрагенту дані з бази?</summary>
+          <div class="more__body">
+            <p>Контрагент не отримує доступу до бази — він отримує документ. Бот звертається
+              до обмеженого набору сервісних методів, кожен з яких повертає дані лише того
+              контрагента, від імені якого прийшов запит. Права перевіряються на боці облікової
+              системи, а всі звернення журналюються.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Чи не зламається бот після оновлення конфігурації?</summary>
+          <div class="more__body">
+            <p>Доопрацювання винесені в окремі модулі й не переписують типовий код, тому стандартні
+              оновлення проходять як зазвичай. Після великих релізів платформи ми перевіряємо роботу
+              сервісів — це частина підтримки.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Чи можна так само видавати інші документи?</summary>
+          <div class="more__body">
+            <p>Так, і це найдешевша частина роботи. Основні витрати — на інтеграційний шар,
+              а він уже побудований. На ту саму точку входу підключаються рахунки, накладні,
+              залишки, дебіторка чи статус замовлення.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Скільки часу займає впровадження такого сценарію?</summary>
+          <div class="more__body">
+            <p>Залежить від стану бази й кількості сценаріїв. Ми починаємо з безкоштовного аудиту
+              процесу, далі збираємо прототип на реальних даних — саме на ньому видно строк
+              і обсяг робіт, а не на словах.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div class="cta">
+        <h2 id="cta-h">Маєте процес, який з&rsquo;їдає час так само?</h2>
+        <p>Опишіть задачу — розберемо, чи можна її автоматизувати, і скажемо чесно, якщо ні.</p>
+        <div class="hero__actions">
+          <a class="btn" href="https://t.me/vlsv00" target="_blank" rel="noopener">Написати в Telegram</a>
+          <a class="btn btn--onlight" href="cases.html">Інші кейси</a>
+          <a class="btn btn--onlight" href="ai-agents.html">Як ми працюємо</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="site-foot__grid">
+      <div>
+        <span class="brand">VLAS<span>PRO</span></span>
+        <p>Автоматизація бізнес-процесів: Telegram-боти, AI-агенти та інтеграція з обліковими системами.</p>
+      </div>
+      <div>
+        <h2>Сторінки</h2>
+        <ul>
+          <li><a href="index.html">Головна</a></li>
+          <li><a href="ai-agents.html">AI-агенти та боти</a></li>
+          <li><a href="cases.html">Кейси</a></li>
+          <li><a href="contacts.html">Контакти</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Контакти</h2>
+        <ul>
+          <li><a href="tel:+380672675820">+38 (067) 267-58-20</a></li>
+          <li><a href="mailto:vlaspro.com.ua@gmail.com">vlaspro.com.ua@gmail.com</a></li>
+          <li><a href="https://t.me/VLAS_PRO_UA" target="_blank" rel="noopener">Канал Telegram: VLAS_PRO_UA</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37" target="_blank" rel="noopener">Канал WhatsApp: VLAS PRO</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <span>© 2026 VLASPRO. Власюк Володимир Анатолійович.</span>
+      <span>Автоматизація. Інтеграція. Оптимізація.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
