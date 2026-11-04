@@ -24,6 +24,7 @@ vlaspro_html/
     └── img/
         ├── banner.jpg/.webp        фон шапки
         ├── case-1..4.jpg/.webp     картинки кейсів
+        ├── demo-bot-qr.svg         QR на демо-бота (згенерований, не редагувати вручну)
         └── slides/slide-01..19     19 слайдів презентації
 ```
 
@@ -79,6 +80,27 @@ Pages роздає файли прямо з гілки `main`, тож будь-�
 
 Швидкий спосіб: пошук-заміна `https://vvlasiuk.github.io/vlaspro-site/` →
 `https://ваш-домен/` по всій папці.
+
+## Демо-бот
+
+Посилання на тестового бота стоять у трьох місцях: головна, сторінка AI-агентів
+і кейс 01. У кожного свій параметр `start`, який Telegram передає боту при запуску —
+за ним видно, звідки прийшов користувач:
+
+| Де | Посилання |
+|---|---|
+| Головна | `t.me/demo_ai_agent_vps_bot?start=home` |
+| AI-агенти | `t.me/demo_ai_agent_vps_bot?start=ai` |
+| Кейс 01 | `t.me/demo_ai_agent_vps_bot?start=case1` |
+| QR-код | `t.me/demo_ai_agent_vps_bot?start=qr` |
+
+QR (`assets/img/demo-bot-qr.svg`) згенерований бібліотекою segno. Якщо адреса бота
+зміниться, перегенеруйте його, а не правте SVG руками:
+
+```bash
+python -m pip install segno
+python -c "import segno; segno.make('https://t.me/НОВИЙ_БОТ?start=qr', error='m').save('assets/img/demo-bot-qr.svg', kind='svg', scale=10, border=2, dark='#1b2740', light='#ffffff', omitsize=True)"
+```
 
 ## Технічні деталі
 

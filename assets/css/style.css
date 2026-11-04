@@ -149,40 +149,6 @@ li::marker { color: var(--accent); }
 .btn--sm { padding: .5rem 1rem; font-size: .88rem; }
 
 /* --- hero --------------------------------------------------------------- */
-.hero { position: relative; isolation: isolate; overflow: hidden; background: #cfc4c9; }
-
-.hero::before {
-  content: ''; position: absolute; inset: 0; z-index: -2;
-  background: url('../img/banner.jpg') center 42% / cover no-repeat;
-  /* браузери з підтримкою image-set візьмуть webp (26 КБ замість 86 КБ) */
-  background-image: image-set(url('../img/banner.webp') type('image/webp'),
-                              url('../img/banner.jpg') type('image/jpeg'));
-}
-.hero::after {
-  content: ''; position: absolute; inset: 0; z-index: -1;
-  background:
-    radial-gradient(90% 120% at 20% 40%, rgba(255, 255, 255, .82) 0%, rgba(255, 255, 255, .5) 45%, rgba(255, 255, 255, .1) 100%),
-    linear-gradient(180deg, rgba(255, 255, 255, .25) 0%, rgba(238, 242, 246, .35) 62%, var(--bg) 100%);
-}
-
-.hero__inner { padding: clamp(3.5rem, 11vw, 8rem) 0 clamp(3rem, 8vw, 5.5rem); text-align: center; }
-
-.hero__mark {
-  font-family: var(--mark); font-weight: 900;
-  font-size: clamp(2.7rem, 11vw, 5.4rem);
-  letter-spacing: .1em; color: var(--ink);
-  margin: 0 0 .35em; line-height: 1;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, .6);
-}
-
-.hero__tagline {
-  font-family: var(--slab); font-weight: 300;
-  font-size: clamp(1.5rem, 4.6vw, 3rem);
-  color: var(--ink); line-height: 1.2;
-  margin: 0 auto .9em; max-width: 20ch;
-}
-.hero__tagline b { font-weight: 700; }
-
 .kicker {
   display: block;
   font: 600 clamp(.82rem, 2.2vw, 1rem)/1.5 var(--sans);
@@ -191,21 +157,68 @@ li::marker { color: var(--accent); }
   margin-bottom: 2.2rem;
 }
 
-/* the hero sits on a photo, so its kicker needs a darker teal */
-.hero .kicker { color: #06515c; }
-
 .hero__actions { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; }
 
-/* page hero (inner pages) */
+/* page hero — однакова шапка на всіх сторінках, включно з головною */
 .pagehead {
   background: linear-gradient(180deg, #1b2740 0%, #24324f 100%);
   color: rgba(255, 255, 255, .78);
   padding: clamp(2.6rem, 7vw, 4.6rem) 0 clamp(2.4rem, 6vw, 4rem);
   text-align: center;
 }
-.pagehead h1 { color: #fff; font-size: clamp(1.9rem, 5.5vw, 3rem); margin-bottom: .3em; }
-.pagehead p { max-width: 62ch; margin-inline: auto; }
+/* Заголовок, підпис і напис VLAS PRO однакові на всіх сторінках:
+   один шрифт, одна насиченість, один розмір. */
+.pagehead h1 {
+  color: #fff; font-weight: 300; line-height: 1.2;
+  font-size: clamp(1.9rem, 5.5vw, 3rem);
+  margin-bottom: .3em;
+}
+.pagehead h1 b { font-weight: 700; }
+/* :not() — бо напис VLAS PRO вище теж є <p> і ширина його не стосується.
+   80ch підібрано так, щоб довгий підпис на сторінці AI-агентів лягав
+   у два рядки приблизно однакової довжини (778 і 783 px), а не 915 і 646. */
+.pagehead p:not(.pagehead__mark) { max-width: 80ch; margin-inline: auto; }
 .pagehead .kicker { color: #7fd3dd; margin-bottom: 1rem; }
+
+.pagehead__mark {
+  font-family: var(--mark); font-weight: 900;
+  font-size: clamp(1.55rem, 5vw, 2.4rem);
+  letter-spacing: .14em; color: #fff;
+  line-height: 1; margin: 0 0 .9rem;
+}
+
+/* головна: та сама шапка, але з банером під темною заливкою */
+.pagehead--home { position: relative; isolation: isolate; overflow: hidden; }
+
+.pagehead--home::before {
+  content: ''; position: absolute; inset: 0; z-index: -2;
+  background: url('../img/banner.jpg') center 42% / cover no-repeat;
+  /* браузери з підтримкою image-set візьмуть webp (26 КБ замість 86 КБ) */
+  background-image: image-set(url('../img/banner.webp') type('image/webp'),
+                              url('../img/banner.jpg') type('image/jpeg'));
+}
+.pagehead--home::after {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(27, 39, 64, .90) 0%, rgba(27, 39, 64, .86) 55%, rgba(36, 50, 79, .95) 100%);
+}
+
+/* заголовок має лягати в один рядок на будь-якій ширині.
+   Текст завширшки ~17.8em; 4.7vw лишає запас навіть на 320 px з урахуванням
+   смуги прокрутки, яку vw не віднімає. Перенос свідомо не заборонений
+   (без white-space: nowrap): якщо шрифт не завантажиться і підставиться
+   ширший запасний, рядок просто розділиться надвоє замість того,
+   щоб виїхати за екран. */
+.pagehead--home h1 { font-size: min(3rem, 4.7vw); }
+
+.pagehead--home .hero__actions { margin-top: 1.7rem; }
+
+/* на малих екранах шапка стискається — однаково на всіх сторінках */
+@media (max-width: 480px) {
+  .pagehead { padding-block: 2.2rem 2rem; }
+  .pagehead__mark { margin-bottom: .7rem; }
+  .pagehead .kicker { margin-bottom: .8rem; }
+  .pagehead--home .hero__actions { margin-top: 1.3rem; }
+}
 
 /* --- sections ----------------------------------------------------------- */
 .section { padding: clamp(2.8rem, 8vw, 5.5rem) 0; }
@@ -231,9 +244,24 @@ li::marker { color: var(--accent); }
   padding: clamp(1.4rem, 4vw, 2.6rem);
 }
 
-/* intro card on the home page */
-.intro { display: grid; gap: clamp(1.5rem, 4vw, 2.5rem); }
-.intro__rule { width: 64px; height: 4px; border-radius: 2px; background: var(--accent); }
+/* блок «про VLASPRO» на головній: теза ліворуч, розкриття праворуч */
+.about { display: grid; gap: clamp(1.4rem, 4vw, 2.4rem); }
+@media (min-width: 860px) {
+  .about { grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr); align-items: start; }
+  .about__body { padding-left: clamp(1.6rem, 3vw, 2.6rem); border-left: 1px solid var(--line); }
+}
+
+.about__rule { width: 64px; height: 4px; border-radius: 2px; background: var(--accent); margin-bottom: 1.2rem; }
+
+.about__lead {
+  font-family: var(--slab); font-weight: 400;
+  font-size: clamp(1.18rem, 2.7vw, 1.6rem);
+  line-height: 1.4; color: var(--ink);
+  margin: 0;
+}
+
+.about__body { display: grid; gap: 1.1rem; align-content: start; }
+.about__body p { margin: 0; color: var(--ink-2); }
 
 /* --- teaser grid -------------------------------------------------------- */
 .grid { display: grid; gap: clamp(1rem, 2.5vw, 1.5rem); }
@@ -316,6 +344,122 @@ details.more[open] > summary::after { transform: rotate(-135deg) translateY(-1px
 details.more > summary:hover { background: #d5ebee; }
 details.more[open] > summary { margin-bottom: .4rem; }
 .more__body { padding-top: .6rem; }
+
+/* --- розгорнутий кейс на всю ширину -------------------------------------- */
+/* Блок винесений із колонки кейсу і стоїть під сіткою, тож текст займає
+   всю ширину статті. Щоб рядки не розтягувалися на 1000+ px і не втрачали
+   читабельність, довгі кейси (.more--cols) розкладаються у дві колонки. */
+.case > details.more {
+  margin-top: clamp(1.4rem, 3.5vw, 2.2rem);
+  border-top: 1px dashed var(--line);
+}
+
+.case > details.more > summary { margin-top: 1.2rem; }
+
+.case > details.more .more__body {
+  margin-top: .9rem; padding: clamp(1.2rem, 3vw, 1.9rem) clamp(1.2rem, 3.5vw, 2.1rem);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.case > details.more .more__body > :first-child { margin-top: 0; }
+.case > details.more .more__body > :last-child { margin-bottom: 0; }
+
+@media (min-width: 900px) {
+  .more--cols .more__body {
+    column-count: 2;
+    column-gap: clamp(2rem, 4.5vw, 3.4rem);
+    column-rule: 1px solid var(--line);
+  }
+  /* Абзац не рвемо, а довгий список хай перетікає між колонками — інакше
+     колонки виходять різної висоти (у кейсі 01 було 60 % заповнення проти
+     100 % зараз). Окремий пункт списку при цьому лишається цілим. */
+  .more--cols .more__body p { break-inside: avoid; }
+  .more--cols .more__body li { break-inside: avoid; }
+  .more--cols .more__body h3 { break-after: avoid; margin-top: 0; }
+  .more--cols .more__body h3 + ul,
+  .more--cols .more__body h3 + p { margin-top: .5em; }
+}
+
+/* --- блок демо-бота ------------------------------------------------------ */
+/* Блок живе і на всю ширину сторінки, і всередині вузької колонки кейсу,
+   тож двоколонкової розкладки за медіа-запитом тут свідомо немає:
+   на 900 px колонка кейсу — близько 400 px, і текст поруч із QR стискався
+   до нечитабельних 143 px. */
+.trybot {
+  margin-top: 1.6rem;
+  background: linear-gradient(135deg, #1b2740 0%, #123c46 100%);
+  color: rgba(255, 255, 255, .82);
+  border-radius: var(--radius);
+  padding: clamp(1.3rem, 3.5vw, 1.9rem);
+}
+
+.trybot__tag {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font: 700 .74rem/1 var(--sans); letter-spacing: .18em; text-transform: uppercase;
+  color: #7fd3dd; margin-bottom: .7rem;
+}
+.trybot__tag::before { content: ''; width: 22px; height: 2px; background: #7fd3dd; }
+
+.trybot h3 {
+  font-family: var(--slab); color: #fff;
+  font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+  margin: 0 0 .5rem;
+}
+.trybot p { font-size: .96rem; margin: 0 0 1rem; }
+.trybot__btn { margin-bottom: .8rem; }
+
+.trybot__note {
+  font-size: .85rem; color: rgba(255, 255, 255, .58);
+  margin: 0;
+}
+
+/* QR лежить окремим рядком під кнопкою — так він не тисне текст */
+.trybot__qr {
+  display: flex; align-items: center; gap: .9rem;
+  margin-top: 1.2rem; padding-top: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, .14);
+}
+.trybot__qr img {
+  flex: none; width: 104px; height: auto;
+  border-radius: 8px; padding: 7px; background: #fff;
+}
+.trybot__qr p { font-size: .85rem; color: rgba(255, 255, 255, .58); margin: 0; }
+
+/* на телефоні QR зайвий — Telegram відкриється прямо з кнопки */
+@media (max-width: 619px) { .trybot__qr { display: none; } }
+
+/* стисла смуга на головній: текст ліворуч, кнопка праворуч */
+.trybot--slim {
+  margin-top: 0;
+  display: grid; gap: clamp(1.1rem, 3vw, 1.7rem); align-items: center;
+}
+@media (min-width: 760px) {
+  .trybot--slim { grid-template-columns: minmax(0, 1fr) auto; }
+}
+.trybot--slim p:last-child { margin-bottom: 0; }
+.trybot--slim .btn { white-space: nowrap; }
+
+/* повний варіант під кейсом — на всю ширину сторінки, QR збоку.
+   Тут місця вистачає, тож двоколонкова розкладка доречна. */
+.trybot--wide { margin-top: clamp(1.8rem, 4vw, 2.6rem); }
+
+@media (min-width: 760px) {
+  .trybot--wide {
+    display: grid; align-items: center;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(1.6rem, 4vw, 3rem);
+    padding: clamp(1.6rem, 3.5vw, 2.2rem);
+  }
+  .trybot--wide .trybot__qr {
+    flex-direction: column; text-align: center; gap: .65rem;
+    margin-top: 0; padding-top: 0; border-top: 0;
+  }
+  .trybot--wide .trybot__qr img { width: 128px; }
+  .trybot--wide .trybot__main > :last-child { margin-bottom: 0; }
+}
 
 /* --- slider ------------------------------------------------------------- */
 .slider { position: relative; }
@@ -461,6 +605,12 @@ details.more[open] > summary { margin-bottom: .4rem; }
 }
 .callout--plain { background: transparent; border-left-color: var(--line); color: var(--ink-3); }
 .callout p + p { margin-top: .8rem; }
+
+.callout__actions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1rem;
+  margin-top: 1.1rem;
+}
+.callout__hint { font-size: .89rem; color: var(--ink-3); }
 
 /* ланцюжок «як проходить запит» */
 .h-mid { text-align: center; font-size: 1.15rem; margin-bottom: 1.4rem; }
