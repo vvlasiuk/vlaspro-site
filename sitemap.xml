@@ -2,22 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://vlaspro.com.ua/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://vlaspro.com.ua/ai-agents.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://vlaspro.com.ua/cases.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-04</lastmod>
   </url>
   <url>
     <loc>https://vlaspro.com.ua/contacts.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-11-04</lastmod>
   </url>
 </urlset>

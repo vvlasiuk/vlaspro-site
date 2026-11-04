@@ -16,8 +16,119 @@
 <meta property="og:url" content="https://vlaspro.com.ua/ai-agents.html">
 <meta property="og:image" content="https://vlaspro.com.ua/assets/img/banner.jpg">
 <meta property="og:locale" content="uk_UA">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://vlaspro.com.ua/ai-agents.html">
 <link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vlaspro.com.ua/#organization",
+      "name": "VLASPRO",
+      "url": "https://vlaspro.com.ua/",
+      "logo": "https://vlaspro.com.ua/apple-touch-icon.png",
+      "email": "vlaspro.com.ua@gmail.com",
+      "telephone": "+380672675820",
+      "sameAs": [
+        "https://t.me/VLAS_PRO_UA",
+        "https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vlaspro.com.ua/#website",
+      "url": "https://vlaspro.com.ua/",
+      "name": "VLASPRO",
+      "inLanguage": "uk-UA",
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://vlaspro.com.ua/ai-agents.html#service",
+      "name": "Розробка Telegram-ботів та AI-агентів з інтеграцією в облікову систему",
+      "serviceType": "Автоматизація бізнес-процесів",
+      "url": "https://vlaspro.com.ua/ai-agents.html",
+      "description": "AI-агенти та Telegram-боти з інтеграцією в облікову систему 1С/BAS: аудит процесу, прототип на реальних даних, інтеграційний шар, впровадження та підтримка.",
+      "provider": { "@id": "https://vlaspro.com.ua/#organization" },
+      "areaServed": { "@type": "Country", "name": "Україна" },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Напрями робіт",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Telegram-боти для облікової системи" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI-агенти для обробки запитів у вільній формі" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Інтеграція 1С/BAS з Telegram, WhatsApp і Viber" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Розпізнавання документів і рукописних бланків" } }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vlaspro.com.ua/ai-agents.html#faq",
+      "inLanguage": "uk-UA",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чи безпечно давати боту доступ до облікової бази?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Бот не працює з базою напряму. Він звертається до обмеженого набору сервісних методів, які ми описуємо на етапі технічного завдання: кожен метод повертає рівно ті дані, які потрібні для конкретного сценарію. Права користувача перевіряються на боці облікової системи, а всі звернення журналюються."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи не зламається все після оновлення конфігурації?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Доопрацювання виносяться в окремі модулі й не переписують типовий код, тому стандартні оновлення проходять як зазвичай. Після великих релізів платформи ми перевіряємо роботу сервісів — це частина підтримки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Скільки це коштує?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Вартість залежить від кількості сценаріїв, стану бази та наявності AI-складової. Точну оцінку даємо після аудиту процесу — він безкоштовний. Проєкти на один-два сценарії зазвичай окупаються за кілька місяців за рахунок звільненого часу персоналу."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "А якщо AI помилиться в розпізнаванні документа?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Там, де ціна помилки висока, ми не робимо повністю автоматичний запис. Агент показує розпізнані дані користувачу на підтвердження — і лише після натискання кнопки документ потрапляє в базу. Точність замірюємо на ваших реальних бланках ще до впровадження."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи можна почати з одного невеликого процесу?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Це і є рекомендований шлях. Один зрозумілий процес — швидкий запуск, видимий результат і мінімальний ризик. Далі інтеграційний шар уже готовий, тож кожен наступний сценарій обходиться дешевше й впроваджується швидше."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чому Telegram, а не власний застосунок?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Тому що його не треба впроваджувати: месенджер уже встановлений, користувач уже вміє ним користуватися, немає ліцензій на робочі місця й немає опору персоналу. За потреби те саме рішення підключаємо і до WhatsApp або Viber."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Головна", "item": "https://vlaspro.com.ua/" },
+        { "@type": "ListItem", "position": 2, "name": "AI-агенти та Telegram-боти", "item": "https://vlaspro.com.ua/ai-agents.html" }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Перейти до основного вмісту</a>
