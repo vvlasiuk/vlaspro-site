@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Розпізнавання рукописних бланків через Telegram — кейс VLASPRO</title>
+<meta name="description" content="Кейс VLASPRO: працівник фотографує паперовий бланк і надсилає в Telegram-бот, модель штучного інтелекту розпізнає дані, а в обліковій базі 1С/BAS автоматично створюється документ.">
+<meta name="theme-color" content="#1b2740">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="VLASPRO">
+<meta property="og:title" content="Розпізнавання рукописних бланків через Telegram — кейс VLASPRO">
+<meta property="og:description" content="Фото паперового бланка в чаті перетворюється на документ в обліковій базі. Без повторного набору руками.">
+<meta property="og:url" content="https://vlaspro.com.ua/rozpiznavannya-blankiv">
+<meta property="og:image" content="https://vlaspro.com.ua/assets/img/case-3.jpg">
+<meta property="og:locale" content="uk_UA">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://vlaspro.com.ua/rozpiznavannya-blankiv">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vlaspro.com.ua/#organization",
+      "name": "VLASPRO",
+      "url": "https://vlaspro.com.ua/",
+      "logo": "https://vlaspro.com.ua/apple-touch-icon.png",
+      "email": "vlaspro.com.ua@gmail.com",
+      "telephone": "+380672675820",
+      "sameAs": [
+        "https://t.me/VLAS_PRO_UA",
+        "https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vlaspro.com.ua/#website",
+      "url": "https://vlaspro.com.ua/",
+      "name": "VLASPRO",
+      "inLanguage": "uk-UA",
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://vlaspro.com.ua/rozpiznavannya-blankiv#article",
+      "headline": "Фото рукописного бланка стає документом в обліковій базі",
+      "description": "Кейс VLASPRO: працівник фотографує паперовий бланк і надсилає в Telegram-бот, модель штучного інтелекту розпізнає дані, а в обліковій базі створюється документ.",
+      "url": "https://vlaspro.com.ua/rozpiznavannya-blankiv",
+      "image": "https://vlaspro.com.ua/assets/img/case-3.jpg",
+      "datePublished": "2026-11-05",
+      "dateModified": "2026-11-05",
+      "inLanguage": "uk-UA",
+      "author": { "@id": "https://vlaspro.com.ua/#organization" },
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" },
+      "isPartOf": { "@id": "https://vlaspro.com.ua/#website" },
+      "about": {
+        "@type": "Service",
+        "name": "Розпізнавання рукописних бланків із внесенням даних у 1С/BAS",
+        "serviceType": "Автоматизація бізнес-процесів",
+        "provider": { "@id": "https://vlaspro.com.ua/#organization" }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vlaspro.com.ua/rozpiznavannya-blankiv#faq",
+      "inLanguage": "uk-UA",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Що буде, якщо почерк нерозбірливий?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Модель повертає не лише значення, а й те, наскільки вона в ньому впевнена. Поля, щодо яких упевненості бракує, не потрапляють у документ мовчки: бот перепитує працівника просто в чаті або помічає документ як такий, що потребує перевірки людиною."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи треба переробляти бланки під систему?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Працюємо з тими бланками, які вже використовує компанія. Чим стабільніша форма, тим точніший результат, тому іноді радимо дрібні правки — рамки для цифр, окреме поле для дати. Але міняти звичний папір і перевчати людей не потрібно."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Куди дівається саме фото бланка?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Зображення зберігається разом зі створеним документом як вкладення. Завдяки цьому будь-яке число в базі можна звірити з оригіналом, не піднімаючи паперовий архів, а сам папір лишається там, де й був."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Що як дані розпізнано неправильно?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Документ створюється в тому статусі, який компанія вважає безпечним: найчастіше це чернетка, яку відповідальна особа звіряє й проводить. Виправлення робиться звичайними засобами облікової системи, а фото поруч дозволяє швидко побачити, де саме модель помилилася."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Головна", "item": "https://vlaspro.com.ua/" },
+        { "@type": "ListItem", "position": 2, "name": "Кейси", "item": "https://vlaspro.com.ua/cases" },
+        { "@type": "ListItem", "position": 3, "name": "Розпізнавання рукописних бланків", "item": "https://vlaspro.com.ua/rozpiznavannya-blankiv" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Перейти до змісту</a>
+
+<header class="site-head">
+  <div class="wrap site-head__inner">
+    <a class="brand" href="/">VLAS<span>PRO</span></a>
+    <nav class="nav" aria-label="Головне меню">
+      <a href="/">Головна</a>
+      <a href="/ai-agents">AI-агенти</a>
+      <a href="/cases">Кейси</a>
+      <a href="/contacts">Контакти</a>
+      <a class="btn btn--sm" href="https://t.me/vlsv00" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.8 15.6 9.6 20c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.8.4 1.3.2 1.5-.7L21.9 4.9c.3-1.1-.4-1.6-1.1-1.3L2.9 10.5c-1.1.4-1.1 1-.2 1.3l4.5 1.4L17.6 6.6c.5-.3.9-.1.5.2z"/></svg>
+        Telegram
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="wrap">
+      <p class="pagehead__mark">VLAS PRO</p>
+      <span class="kicker">Кейс 03 · Штучний інтелект + облікова база</span>
+      <h1>Фото рукописного бланка стає документом в обліковій базі</h1>
+      <p>Працівник фотографує заповнений папір і надсилає в чат. Модель розпізнає дані,
+        а система створює з них документ — без повторного набору руками</p>
+    </div>
+  </section>
+
+  <nav class="section section--tight jump" aria-label="Розділи сторінки">
+    <div class="wrap">
+      <ul class="jump__list">
+        <li><a href="#task">Задача</a></li>
+        <li><a href="#solution">Рішення</a></li>
+        <li><a href="#how">Як це працює</a></li>
+        <li><a href="#result">Що це дало</a></li>
+        <li><a href="#faq">Питання</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section section--top-0" id="task" aria-labelledby="task-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="task-h">Задача: папір, який усе одно доводиться набирати</h2>
+      </div>
+
+      <div class="grid grid--2">
+        <div>
+          <p>Багато оперативних даних народжується не за комп&rsquo;ютером. Замір на ділянці,
+            приймання на складі, виробіток за зміну, облік відходів, показники обладнання —
+            усе це людина фіксує там, де працює: ручкою на бланку.</p>
+          <p>Потім цей папір їде в офіс. Там хтось сідає й набирає ті самі цифри в облікову
+            систему. Виходить подвійна робота: один раз записали рукою, другий раз —
+            клавіатурою.</p>
+        </div>
+        <div>
+          <p>Проблема навіть не в годинах на набір. Проблема в затримці: дані потрапляють
+            у базу наступного дня, у понеділок або в кінці тижня — коли реагувати на них
+            уже пізно.</p>
+          <p>І в помилках. Під час перенесення цифра з паперу легко стає іншою цифрою в базі,
+            і знайти це можна хіба що випадково, бо оригінал лежить у папці на іншому поверсі.</p>
+        </div>
+      </div>
+
+      <figure class="case__media" style="margin-top: 1.6rem;">
+        <picture>
+          <source srcset="assets/img/case-3.webp" type="image/webp">
+          <img src="assets/img/case-3.jpg" width="1200" height="737" loading="lazy"
+               alt="Рукописний бланк, його фото в Telegram і готовий документ в обліковій базі.">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="solution" aria-labelledby="solution-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="solution-h">Рішення: набирає не людина, а модель</h2>
+        <p>Паперовий бланк лишається. Зникає лише другий набір тих самих даних.</p>
+      </div>
+
+      <p>Працівник заповнює звичний бланк так само, як робив завжди. Далі фотографує його
+        телефоном і надсилає в Telegram-бот. Модель штучного інтелекту розпізнає й структурує
+        дані зі знімка: не просто перетворює картинку на текст, а розкладає його по потрібних
+        полях — дата, кількість, номенклатура, виконавець.</p>
+
+      <p>На основі цих даних в обліковій базі автоматично створюється відповідний документ.
+        Працівник отримує у відповідь підтвердження з тим, що саме потрапило в систему, —
+        тож помилку видно одразу, а не через тиждень.</p>
+
+      <div class="callout">
+        <p><strong>Чому фото, а не планшет на кожного.</strong> Планшети треба купити, зарядити,
+          захистити від пилу й навчити людей ними користуватися. Телефон уже є в кишені, камера
+          працює в рукавичках і не боїться цеху, а звичка заповнити папір лишається незмінною —
+          змінюється тільки те, що відбувається з папером далі.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="how-h">Як це працює</h2>
+        <p>Той самий шлях, яким ходить будь-який наш інтеграційний сценарій.</p>
+      </div>
+
+      <ol class="flow">
+        <li class="flow__step">
+          <span class="flow__num">1</span>
+          <h3>Працівник</h3>
+          <p>Заповнює бланк рукою, фотографує його телефоном і надсилає фото в чат боту.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">2</span>
+          <h3>Бот</h3>
+          <p>Приймає зображення, визначає відправника та його права й передає знімок
+            на розпізнавання.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">3</span>
+          <h3>Модель</h3>
+          <p>Розпізнає рукописний текст і розкладає його по полях бланка, повертаючи ще й міру
+            впевненості в кожному значенні.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">4</span>
+          <h3>Перевірка</h3>
+          <p>Дані зіставляються з довідниками бази — номенклатурою, підрозділами, працівниками.
+            Сумнівні поля бот перепитує в чаті.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">5</span>
+          <h3>Результат</h3>
+          <p>В обліковій системі створюється документ із прикріпленим фото оригіналу,
+            а працівник бачить підтвердження в чаті.</p>
+        </li>
+      </ol>
+
+      <div class="callout">
+        <p><strong>Модель не вирішує сама, що вважати правдою.</strong> Усе, що вона повертає,
+          проходить перевірку на боці облікової системи: чи існує така номенклатура, чи можлива
+          така кількість, чи не дублюється бланк. Документ створюється в тому статусі, який
+          компанія вважає безпечним — найчастіше це чернетка під звірку відповідальною особою.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="result" aria-labelledby="result-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="result-h">Що це дало компанії</h2>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card def">
+          <p class="def__tag">Офіс</p>
+          <h3>Другий набір зник</h3>
+          <p>Ті самі цифри більше не вводять руками вдруге. Людина, яка цим займалася,
+            перевіряє виняткові випадки замість того, щоб передруковувати всю пачку.</p>
+        </div>
+        <div class="card def def--accent">
+          <p class="def__tag">Швидкість</p>
+          <h3>Дані в базі того ж дня</h3>
+          <p>Бланк потрапляє в систему одразу після заповнення, а не після поїздки в офіс.
+            На показники зміни можна реагувати, поки вони ще щось означають.</p>
+        </div>
+        <div class="card def">
+          <p class="def__tag">Якість</p>
+          <h3>Оригінал завжди поруч</h3>
+          <p>Фото бланка зберігається разом із документом. Будь-яке число можна звірити
+            з папером за секунди, не піднімаючи архів.</p>
+        </div>
+        <div class="card def">
+          <p class="def__tag">Люди</p>
+          <h3>Нічого не треба перевчати</h3>
+          <p>Працівник на ділянці продовжує робити те саме, що й робив. Єдина нова дія —
+            сфотографувати бланк, і цього навчати не доводиться.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="faq-h">Часті питання про цей кейс</h2>
+      </div>
+
+      <div class="faq">
+        <details class="more">
+          <summary>Що буде, якщо почерк нерозбірливий?</summary>
+          <div class="more__body">
+            <p>Модель повертає не лише значення, а й те, наскільки вона в ньому впевнена.
+              Поля, щодо яких упевненості бракує, не потрапляють у документ мовчки: бот перепитує
+              працівника просто в чаті або помічає документ як такий, що потребує перевірки людиною.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Чи треба переробляти бланки під систему?</summary>
+          <div class="more__body">
+            <p>Працюємо з тими бланками, які вже використовує компанія. Чим стабільніша форма,
+              тим точніший результат, тому іноді радимо дрібні правки — рамки для цифр, окреме поле
+              для дати. Але міняти звичний папір і перевчати людей не потрібно.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Куди дівається саме фото бланка?</summary>
+          <div class="more__body">
+            <p>Зображення зберігається разом зі створеним документом як вкладення. Завдяки цьому
+              будь-яке число в базі можна звірити з оригіналом, не піднімаючи паперовий архів,
+              а сам папір лишається там, де й був.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Що як дані розпізнано неправильно?</summary>
+          <div class="more__body">
+            <p>Документ створюється в тому статусі, який компанія вважає безпечним: найчастіше
+              це чернетка, яку відповідальна особа звіряє й проводить. Виправлення робиться
+              звичайними засобами облікової системи, а фото поруч дозволяє швидко побачити,
+              де саме модель помилилася.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--alt" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div class="cta">
+        <h2 id="cta-h">У вас теж дані живуть на папері?</h2>
+        <p>Покажіть свій бланк — скажемо, чи можна його розпізнавати, і що для цього потрібно.</p>
+        <div class="hero__actions">
+          <a class="btn" href="https://t.me/vlsv00" target="_blank" rel="noopener">Написати в Telegram</a>
+          <a class="btn btn--onlight" href="/cases">Інші кейси</a>
+          <a class="btn btn--onlight" href="/ai-agents">Як ми працюємо</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="site-foot__grid">
+      <div>
+        <span class="brand">VLAS<span>PRO</span></span>
+        <p>Автоматизація бізнес-процесів: Telegram-боти, AI-агенти та інтеграція з обліковими системами.</p>
+      </div>
+      <div>
+        <h2>Сторінки</h2>
+        <ul>
+          <li><a href="/">Головна</a></li>
+          <li><a href="/ai-agents">AI-агенти та боти</a></li>
+          <li><a href="/cases">Кейси</a></li>
+          <li><a href="/contacts">Контакти</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Контакти</h2>
+        <ul>
+          <li><a href="tel:+380672675820">+38 (067) 267-58-20</a></li>
+          <li><a href="mailto:vlaspro.com.ua@gmail.com">vlaspro.com.ua@gmail.com</a></li>
+          <li><a href="https://t.me/VLAS_PRO_UA" target="_blank" rel="noopener">Канал Telegram: VLAS_PRO_UA</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37" target="_blank" rel="noopener">Канал WhatsApp: VLAS PRO</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <span>© 2026 VLASPRO. Власюк Володимир Анатолійович.</span>
+      <span>Автоматизація. Інтеграція. Оптимізація.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

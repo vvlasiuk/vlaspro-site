@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Інтеграція 1С/BAS з Telegram і WhatsApp — кейс VLASPRO</title>
+<meta name="description" content="Кейс VLASPRO: інтеграційний модуль надсилає з 1С/BAS у Telegram і WhatsApp сповіщення про критичні події, звіти, графіки та Excel — за графіком, за подією і персонально за ролями.">
+<meta name="theme-color" content="#1b2740">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="VLASPRO">
+<meta property="og:title" content="Інтеграція 1С/BAS з Telegram і WhatsApp — кейс VLASPRO">
+<meta property="og:description" content="Звіти, графіки та сповіщення про критичні події приходять із облікової системи просто в чат — 24/7, кожному за його роллю.">
+<meta property="og:url" content="https://vlaspro.com.ua/integratsiya-1c-telegram">
+<meta property="og:image" content="https://vlaspro.com.ua/assets/img/slides/slide-01.jpg">
+<meta property="og:locale" content="uk_UA">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://vlaspro.com.ua/integratsiya-1c-telegram">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vlaspro.com.ua/#organization",
+      "name": "VLASPRO",
+      "url": "https://vlaspro.com.ua/",
+      "logo": "https://vlaspro.com.ua/apple-touch-icon.png",
+      "email": "vlaspro.com.ua@gmail.com",
+      "telephone": "+380672675820",
+      "sameAs": [
+        "https://t.me/VLAS_PRO_UA",
+        "https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vlaspro.com.ua/#website",
+      "url": "https://vlaspro.com.ua/",
+      "name": "VLASPRO",
+      "inLanguage": "uk-UA",
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://vlaspro.com.ua/integratsiya-1c-telegram#article",
+      "headline": "Звіти і сповіщення з облікової системи просто в месенджер",
+      "description": "Кейс VLASPRO: інтеграційний модуль надсилає з 1С/BAS у Telegram і WhatsApp сповіщення про критичні події, звіти, графіки та Excel — за графіком, за подією і персонально за ролями.",
+      "url": "https://vlaspro.com.ua/integratsiya-1c-telegram",
+      "image": "https://vlaspro.com.ua/assets/img/slides/slide-01.jpg",
+      "datePublished": "2026-11-05",
+      "dateModified": "2026-11-05",
+      "inLanguage": "uk-UA",
+      "author": { "@id": "https://vlaspro.com.ua/#organization" },
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" },
+      "isPartOf": { "@id": "https://vlaspro.com.ua/#website" },
+      "about": {
+        "@type": "Service",
+        "name": "Інтеграція 1С/BAS з Telegram і WhatsApp",
+        "serviceType": "Автоматизація бізнес-процесів",
+        "provider": { "@id": "https://vlaspro.com.ua/#organization" }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vlaspro.com.ua/integratsiya-1c-telegram#faq",
+      "inLanguage": "uk-UA",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Чи потрібні додаткові робочі місця й ліцензії для отримувачів?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ні. Людина отримує дані у месенджері, яким уже користується, і до облікової системи не підключається. Робочі місця потрібні тим, хто в базі працює, а не тим, хто читає звіт чи сповіщення."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Telegram чи WhatsApp — що обрати?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Залежить від того, де ваші люди вже спілкуються. Telegram зручніший для внутрішніх сценаріїв: кнопки, файли, канали, групи за відділами. WhatsApp частіше обирають там, де в ньому живе спілкування з клієнтами. Модуль працює з обома, і їх можна поєднувати."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можна налаштувати розсилку за розкладом?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Так. Звіт може приходити за графіком — щоранку, щопонеділка, в останній день місяця — або за подією в базі: прострочена оплата, відвантаження понад ліміт, падіння залишку нижче норми. Обидва режими налаштовуються без програмування під кожен випадок."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи безпечно надсилати робочі дані в месенджер?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "У чат потрапляє рівно те, що передбачено сценарієм для конкретної ролі, а не доступ до бази. Перелік показників, глибина деталізації й коло отримувачів задаються наперед, звернення журналюються, а сам канал доставки не дає можливості запитати в системі щось понад дозволене."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Головна", "item": "https://vlaspro.com.ua/" },
+        { "@type": "ListItem", "position": 2, "name": "Кейси", "item": "https://vlaspro.com.ua/cases" },
+        { "@type": "ListItem", "position": 3, "name": "Інтеграція 1С з Telegram і WhatsApp", "item": "https://vlaspro.com.ua/integratsiya-1c-telegram" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Перейти до змісту</a>
+
+<header class="site-head">
+  <div class="wrap site-head__inner">
+    <a class="brand" href="/">VLAS<span>PRO</span></a>
+    <nav class="nav" aria-label="Головне меню">
+      <a href="/">Головна</a>
+      <a href="/ai-agents">AI-агенти</a>
+      <a href="/cases">Кейси</a>
+      <a href="/contacts">Контакти</a>
+      <a class="btn btn--sm" href="https://t.me/vlsv00" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.8 15.6 9.6 20c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.8.4 1.3.2 1.5-.7L21.9 4.9c.3-1.1-.4-1.6-1.1-1.3L2.9 10.5c-1.1.4-1.1 1-.2 1.3l4.5 1.4L17.6 6.6c.5-.3.9-.1.5.2z"/></svg>
+        Telegram
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="wrap">
+      <p class="pagehead__mark">VLAS PRO</p>
+      <span class="kicker">Кейс 05 · Інтеграційний модуль</span>
+      <h1>Звіти і сповіщення з облікової системи просто в месенджер</h1>
+      <p>Критичні події, звіти, графіки та Excel приходять у Telegram або WhatsApp —
+        за графіком і за подією, кожному за його роллю</p>
+    </div>
+  </section>
+
+  <nav class="section section--tight jump" aria-label="Розділи сторінки">
+    <div class="wrap">
+      <ul class="jump__list">
+        <li><a href="#task">Задача</a></li>
+        <li><a href="#solution">Рішення</a></li>
+        <li><a href="#how">Як це працює</a></li>
+        <li><a href="#result">Що це дає</a></li>
+        <li><a href="#faq">Питання</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section section--top-0" id="task" aria-labelledby="task-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="task-h">Задача: дані є, але по них ніхто не ходить</h2>
+      </div>
+
+      <div class="grid grid--2">
+        <div>
+          <p>Облікова система знає все: скільки грошей на рахунку, хто прострочив оплату,
+            що із запасами, як виглядає план-факт, на якому етапі замовлення. Проблема в тому,
+            що по цю інформацію треба йти самому.</p>
+          <p>Відкрити базу, згадати, де лежить потрібний звіт, виставити відбори, дочекатися
+            формування. Керівник робить це раз на тиждень, у кращому випадку. Тобто дізнається
+            про проблему тоді, коли вона вже сталася.</p>
+        </div>
+        <div>
+          <p>Обхідний шлях знайомий усім: бухгалтер або аналітик вивантажує звіт руками
+            й надсилає його у вайбер чи поштою. Щодня одне й те саме, і кожного разу —
+            людська праця.</p>
+          <p>А ще є події, про які треба знати негайно: падіння залишку, затримка оплати,
+            зупинка обміну даними. У базі вони просто існують і чекають, поки хтось відкриє
+            потрібну форму.</p>
+        </div>
+      </div>
+
+      <figure class="case__media" style="margin-top: 1.6rem;">
+        <picture>
+          <source srcset="assets/img/slides/slide-01.webp" type="image/webp">
+          <img src="assets/img/slides/slide-01.jpg" width="1400" height="788" loading="lazy"
+               alt="Модуль «Інтеграція 1С + Telegram/WhatsApp»: контролюйте стан вашої бази.">
+        </picture>
+        <figcaption>Повна презентація модуля — 19 слайдів — лежить
+          <a href="/cases#case-5">на сторінці кейсів</a>.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="solution" aria-labelledby="solution-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="solution-h">Рішення: дані самі йдуть до людини</h2>
+        <p>Не людина відкриває базу, а база пише людині — туди, де та вже є.</p>
+      </div>
+
+      <p>Інтеграційний модуль зв&rsquo;язує 1С або BAS із Telegram і WhatsApp. Через цей канал
+        у чат приходять миттєві сповіщення про критичні події та стан інформаційної системи,
+        а також звіти, графіки й файли Excel — цілодобово, без участі людини, яка раніше
+        вивантажувала їх руками.</p>
+
+      <p>Кожен отримує своє. Керівнику — зведені показники й тривоги, менеджеру — його
+        замовлення й дебіторка, бухгалтерії — свої ділянки. Це не загальна розсилка одного
+        звіту на всіх, а персоналізація за ролями.</p>
+
+      <div class="callout">
+        <p><strong>Швидке впровадження — головна перевага цього сценарію.</strong> Тут не треба
+          переписувати облікові процеси: база лишається такою, як є, а модуль лише забирає з неї
+          дані й доставляє. Тому це найчастіше перший крок, з якого компанії починають, перш ніж
+          братися за складніші сценарії з кнопками й зворотним записом.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="how-h">Як це працює</h2>
+        <p>Той самий шлях, яким ходить будь-який наш інтеграційний сценарій.</p>
+      </div>
+
+      <ol class="flow">
+        <li class="flow__step">
+          <span class="flow__num">1</span>
+          <h3>Привід</h3>
+          <p>Настає час за розкладом або в базі стається подія — прострочення, відхилення,
+            зміна статусу.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">2</span>
+          <h3>Облікова база</h3>
+          <p>Дані формуються штатними механізмами системи — тим самим звітом, яким користується
+            людина.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">3</span>
+          <h3>Інтеграційний шар</h3>
+          <p>Сервісний метод на боці 1С/BAS готує повідомлення й визначає, кому воно адресоване.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">4</span>
+          <h3>Канал доставки</h3>
+          <p>Бот надсилає текст, графік або файл у Telegram чи WhatsApp — особисто, у групу
+            або в канал відділу.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">5</span>
+          <h3>Отримувач</h3>
+          <p>Бачить саме ті показники, які стосуються його ролі, і реагує одразу, а не на
+            наступному тижні.</p>
+        </li>
+      </ol>
+
+      <div class="callout">
+        <p><strong>Запит теж можливий, не лише розсилка.</strong> Той самий канал працює
+          у зворотний бік: отримувач може попросити звіт сам — командою в чаті — і отримати
+          актуальні цифри тоді, коли вони знадобилися, без відкривання бази.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="result" aria-labelledby="result-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="result-h">Що це дає компанії</h2>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card def">
+          <p class="def__tag">Керівник</p>
+          <h3>Стан справ без відкривання бази</h3>
+          <p>Дебіторка, запаси, план-факт і статуси замовлень приходять самі. Рішення ухвалюються
+            за свіжими цифрами, а не за позавчорашніми.</p>
+        </div>
+        <div class="card def def--accent">
+          <p class="def__tag">Реакція</p>
+          <h3>Про проблему відомо одразу</h3>
+          <p>Критична подія не чекає, поки хтось відкриє потрібну форму. Сповіщення приходить
+            тоді, коли ще є час щось змінити.</p>
+        </div>
+        <div class="card def">
+          <p class="def__tag">Персонал</p>
+          <h3>Ручна розсилка зникає</h3>
+          <p>Ніхто більше не вивантажує щоранку один і той самий звіт, щоб переслати його
+            в чат. Це робить система, і завжди вчасно.</p>
+        </div>
+        <div class="card def">
+          <p class="def__tag">Витрати</p>
+          <h3>Без нових робочих місць</h3>
+          <p>Отримувачі не підключаються до облікової системи, тому додаткові ліцензії
+            й навчання не потрібні — люди користуються месенджером, який уже знають.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="faq-h">Часті питання про цей кейс</h2>
+      </div>
+
+      <div class="faq">
+        <details class="more">
+          <summary>Чи потрібні додаткові робочі місця й ліцензії для отримувачів?</summary>
+          <div class="more__body">
+            <p>Ні. Людина отримує дані у месенджері, яким уже користується, і до облікової
+              системи не підключається. Робочі місця потрібні тим, хто в базі працює, а не тим,
+              хто читає звіт чи сповіщення.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Telegram чи WhatsApp — що обрати?</summary>
+          <div class="more__body">
+            <p>Залежить від того, де ваші люди вже спілкуються. Telegram зручніший для внутрішніх
+              сценаріїв: кнопки, файли, канали, групи за відділами. WhatsApp частіше обирають там,
+              де в ньому живе спілкування з клієнтами. Модуль працює з обома, і їх можна
+              поєднувати.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Можна налаштувати розсилку за розкладом?</summary>
+          <div class="more__body">
+            <p>Так. Звіт може приходити за графіком — щоранку, щопонеділка, в останній день
+              місяця — або за подією в базі: прострочена оплата, відвантаження понад ліміт,
+              падіння залишку нижче норми. Обидва режими налаштовуються без програмування
+              під кожен випадок.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Чи безпечно надсилати робочі дані в месенджер?</summary>
+          <div class="more__body">
+            <p>У чат потрапляє рівно те, що передбачено сценарієм для конкретної ролі, а не
+              доступ до бази. Перелік показників, глибина деталізації й коло отримувачів задаються
+              наперед, звернення журналюються, а сам канал доставки не дає можливості запитати
+              в системі щось понад дозволене.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--alt" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div class="cta">
+        <h2 id="cta-h">Хочете бачити свою базу в чаті?</h2>
+        <p>Скажіть, які показники ви перевіряєте найчастіше — покажемо, як вони приходитимуть
+          самі.</p>
+        <div class="hero__actions">
+          <a class="btn" href="https://t.me/vlsv00" target="_blank" rel="noopener">Написати в Telegram</a>
+          <a class="btn btn--onlight" href="/cases">Інші кейси</a>
+          <a class="btn btn--onlight" href="/ai-agents">Як ми працюємо</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="site-foot__grid">
+      <div>
+        <span class="brand">VLAS<span>PRO</span></span>
+        <p>Автоматизація бізнес-процесів: Telegram-боти, AI-агенти та інтеграція з обліковими системами.</p>
+      </div>
+      <div>
+        <h2>Сторінки</h2>
+        <ul>
+          <li><a href="/">Головна</a></li>
+          <li><a href="/ai-agents">AI-агенти та боти</a></li>
+          <li><a href="/cases">Кейси</a></li>
+          <li><a href="/contacts">Контакти</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Контакти</h2>
+        <ul>
+          <li><a href="tel:+380672675820">+38 (067) 267-58-20</a></li>
+          <li><a href="mailto:vlaspro.com.ua@gmail.com">vlaspro.com.ua@gmail.com</a></li>
+          <li><a href="https://t.me/VLAS_PRO_UA" target="_blank" rel="noopener">Канал Telegram: VLAS_PRO_UA</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37" target="_blank" rel="noopener">Канал WhatsApp: VLAS PRO</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <span>© 2026 VLASPRO. Власюк Володимир Анатолійович.</span>
+      <span>Автоматизація. Інтеграція. Оптимізація.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

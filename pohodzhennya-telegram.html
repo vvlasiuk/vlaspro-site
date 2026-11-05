@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Погодження заявок у Telegram з 1С/BAS — кейс VLASPRO</title>
+<meta name="description" content="Кейс VLASPRO: заявки на платіж і відвантаження керівник погоджує кнопкою просто в Telegram, а рішення автоматично фіксується в обліковій системі й процес іде далі.">
+<meta name="theme-color" content="#1b2740">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="VLASPRO">
+<meta property="og:title" content="Погодження заявок у Telegram з 1С/BAS — кейс VLASPRO">
+<meta property="og:description" content="Керівник бачить запит у чаті, натискає «Погодити» або «Відхилити» — і облікова система одразу веде процес далі.">
+<meta property="og:url" content="https://vlaspro.com.ua/pohodzhennya-telegram">
+<meta property="og:image" content="https://vlaspro.com.ua/assets/img/case-2.jpg">
+<meta property="og:locale" content="uk_UA">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://vlaspro.com.ua/pohodzhennya-telegram">
+<link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://vlaspro.com.ua/#organization",
+      "name": "VLASPRO",
+      "url": "https://vlaspro.com.ua/",
+      "logo": "https://vlaspro.com.ua/apple-touch-icon.png",
+      "email": "vlaspro.com.ua@gmail.com",
+      "telephone": "+380672675820",
+      "sameAs": [
+        "https://t.me/VLAS_PRO_UA",
+        "https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://vlaspro.com.ua/#website",
+      "url": "https://vlaspro.com.ua/",
+      "name": "VLASPRO",
+      "inLanguage": "uk-UA",
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://vlaspro.com.ua/pohodzhennya-telegram#article",
+      "headline": "Погодження заявок у Telegram: рішення керівника за два дотики",
+      "description": "Кейс VLASPRO: заявки на платіж і відвантаження керівник погоджує кнопкою просто в Telegram, а рішення автоматично фіксується в обліковій системі.",
+      "url": "https://vlaspro.com.ua/pohodzhennya-telegram",
+      "image": "https://vlaspro.com.ua/assets/img/case-2.jpg",
+      "datePublished": "2026-11-05",
+      "dateModified": "2026-11-05",
+      "inLanguage": "uk-UA",
+      "author": { "@id": "https://vlaspro.com.ua/#organization" },
+      "publisher": { "@id": "https://vlaspro.com.ua/#organization" },
+      "isPartOf": { "@id": "https://vlaspro.com.ua/#website" },
+      "about": {
+        "@type": "Service",
+        "name": "Telegram-бот для погодження заявок з 1С/BAS",
+        "serviceType": "Автоматизація бізнес-процесів",
+        "provider": { "@id": "https://vlaspro.com.ua/#organization" }
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://vlaspro.com.ua/pohodzhennya-telegram#faq",
+      "inLanguage": "uk-UA",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Що буде, якщо відповідальних кілька?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Запит надсилається всім, хто має право вирішувати. Кожен бачить його у себе в чаті й може прийняти рішення. Правило, за яким заявка вважається погодженою — перший голос, більшість чи обов’язкова згода конкретної людини — задається під процес компанії, а не зашите в боті."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи можна подивитися деталі заявки перед рішенням?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "У повідомленні є короткий опис із ключовими полями: контрагент, сума, призначення, автор заявки. За потреби бот прикладає файл із повними даними — рахунок, специфікацію або друковану форму документа з бази."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи лишається слід рішення в обліковій системі?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Так. Рішення записується в базу як дія конкретної людини з часом і коментарем, якщо він був. Це не повідомлення в чаті, яке можна видалити, а запис в обліковій системі, за яким потім можна підняти історію погодження."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Чи потрібен керівнику доступ до бази або VPN?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ні. Керівник працює у звичайному Telegram на телефоні. Робоче місце в обліковій системі, ліцензія та підключення до корпоративної мережі для погодження не потрібні — з базою спілкується бот, а не людина."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Головна", "item": "https://vlaspro.com.ua/" },
+        { "@type": "ListItem", "position": 2, "name": "Кейси", "item": "https://vlaspro.com.ua/cases" },
+        { "@type": "ListItem", "position": 3, "name": "Погодження заявок у Telegram", "item": "https://vlaspro.com.ua/pohodzhennya-telegram" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Перейти до змісту</a>
+
+<header class="site-head">
+  <div class="wrap site-head__inner">
+    <a class="brand" href="/">VLAS<span>PRO</span></a>
+    <nav class="nav" aria-label="Головне меню">
+      <a href="/">Головна</a>
+      <a href="/ai-agents">AI-агенти</a>
+      <a href="/cases">Кейси</a>
+      <a href="/contacts">Контакти</a>
+      <a class="btn btn--sm" href="https://t.me/vlsv00" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.8 15.6 9.6 20c.4 0 .6-.2.8-.4l2-1.9 4.1 3c.8.4 1.3.2 1.5-.7L21.9 4.9c.3-1.1-.4-1.6-1.1-1.3L2.9 10.5c-1.1.4-1.1 1-.2 1.3l4.5 1.4L17.6 6.6c.5-.3.9-.1.5.2z"/></svg>
+        Telegram
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="wrap">
+      <p class="pagehead__mark">VLAS PRO</p>
+      <span class="kicker">Кейс 02 · Telegram-бот + облікова база</span>
+      <h1>Погодження заявок у Telegram: рішення керівника за два дотики</h1>
+      <p>Заявка на платіж чи відвантаження більше не чекає, поки керівник дійде до комп&rsquo;ютера.
+        Запит приходить у чат, а рішення одразу повертається в облікову систему</p>
+    </div>
+  </section>
+
+  <nav class="section section--tight jump" aria-label="Розділи сторінки">
+    <div class="wrap">
+      <ul class="jump__list">
+        <li><a href="#task">Задача</a></li>
+        <li><a href="#solution">Рішення</a></li>
+        <li><a href="#how">Як це працює</a></li>
+        <li><a href="#result">Що це дало</a></li>
+        <li><a href="#faq">Питання</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="section section--top-0" id="task" aria-labelledby="task-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="task-h">Задача: процес стоїть, поки немає рішення</h2>
+      </div>
+
+      <div class="grid grid--2">
+        <div>
+          <p>Майже в кожній компанії є дії, які не можна виконати без підтвердження керівника:
+            заявка на платіж, відвантаження в борг, знижка понад норму, списання, закупівля.
+            Сам процес простий — хтось має сказати «так» або «ні». Складність у тому, де і коли
+            це «так» з&rsquo;являється.</p>
+          <p>Зазвичай виглядає так: виконавець створює документ у базі, після чого йде шукати
+            керівника — дзвінком, повідомленням, особисто. Керівник у дорозі, на зустрічі
+            або просто не за комп&rsquo;ютером. Поки він не відкриє базу, заявка висить.</p>
+        </div>
+        <div>
+          <p>Ціна цього простою — не години роботи, а зупинений процес: клієнт чекає
+            на відвантаження, постачальник на оплату, а менеджер витрачає день на те,
+            щоб нагадати про себе.</p>
+          <p>Друга частина задачі — слід. Рішення, прийняте усно чи в особистому листуванні,
+            ніде не зафіксоване. Через місяць з&rsquo;ясувати, хто саме дозволив ту відвантажити
+            без передоплати, вже неможливо.</p>
+        </div>
+      </div>
+
+      <figure class="case__media" style="margin-top: 1.6rem;">
+        <picture>
+          <source srcset="assets/img/case-2.webp" type="image/webp">
+          <img src="assets/img/case-2.jpg" width="1021" height="1024" loading="lazy"
+               alt="Заявка на платіж у Telegram з кнопками «Погодити» та «Відхилити» під повідомленням бота.">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="solution" aria-labelledby="solution-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="solution-h">Рішення: кнопка замість робочого місця</h2>
+        <p>Ми не прискорювали пошук керівника — ми принесли заявку туди, де він уже є.</p>
+      </div>
+
+      <p>Telegram-бот, інтегрований з обліковою базою, надсилає відповідальній особі повідомлення
+        з коротким описом запиту: хто створив, на що, на яку суму, для кого. За потреби до
+        повідомлення додається файл із повними даними. Під текстом — дві кнопки:
+        <strong>Погодити</strong> або <strong>Відхилити</strong>.</p>
+
+      <p>Натискання кнопки не надсилає нікому листа й не створює задачі для бухгалтера.
+        Воно одразу записує рішення в облікову систему, після чого бізнес-процес переходить
+        на наступний етап — той самий, що й при погодженні з робочого місця.</p>
+
+      <div class="callout">
+        <p><strong>Чому месенджер, а не пошта чи окремий застосунок.</strong> Telegram уже відкритий
+          у керівника й уже сповіщає його звуком. Лист губиться серед сотні інших, окремий застосунок
+          треба ставити, оновлювати та пояснювати. Тут людина робить один дотик у чаті, який і так
+          перевіряє щогодини.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="how-h">Як це працює</h2>
+        <p>Той самий шлях, яким ходить будь-який наш інтеграційний сценарій.</p>
+      </div>
+
+      <ol class="flow">
+        <li class="flow__step">
+          <span class="flow__num">1</span>
+          <h3>Облікова база</h3>
+          <p>Виконавець створює заявку як завжди — у своїй обліковій системі, у звичайному документі.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">2</span>
+          <h3>Інтеграційний шар</h3>
+          <p>Подія запису передається через сервісний метод на боці 1С/BAS — єдину контрольовану
+            точку обміну з ботом.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">3</span>
+          <h3>Бот</h3>
+          <p>Формує повідомлення з ключовими полями, за потреби додає файл і надсилає його всім,
+            хто має право вирішувати.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">4</span>
+          <h3>Відповідальна особа</h3>
+          <p>Читає суть у чаті й натискає «Погодити» або «Відхилити» — з телефона, будь-де.</p>
+        </li>
+        <li class="flow__step">
+          <span class="flow__num">5</span>
+          <h3>Результат</h3>
+          <p>Рішення фіксується в базі як дія конкретної людини, і процес іде далі без участі
+            виконавця.</p>
+        </li>
+      </ol>
+
+      <div class="callout">
+        <p><strong>Правила погодження живуть в обліковій системі, а не в боті.</strong> Хто саме
+          підтверджує, за якою сумою починається друга ланка, що робити при відмові — усе це
+          налаштування процесу в базі. Бот лише доставляє питання й приносить відповідь, тому
+          зміна регламенту не потребує його переписування.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="result" aria-labelledby="result-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="result-h">Що це дало компанії</h2>
+      </div>
+
+      <div class="grid grid--2">
+        <div class="card def">
+          <p class="def__tag">Швидкість</p>
+          <h3>Рішення приходить тоді, коли потрібне</h3>
+          <p>Заявка більше не чекає, поки керівник повернеться за стіл. Відповідь можлива
+            з дороги, зі зустрічі, з іншого міста — скрізь, де працює телефон.</p>
+        </div>
+        <div class="card def def--accent">
+          <p class="def__tag">Керівник</p>
+          <h3>Менше перемикань між задачами</h3>
+          <p>Не треба відкривати базу, шукати документ і згадувати контекст. Усе потрібне
+            для рішення вже є в повідомленні — решта лишається в системі.</p>
+        </div>
+        <div class="card def">
+          <p class="def__tag">Облік</p>
+          <h3>Кожне рішення має автора й час</h3>
+          <p>Погодження фіксується в базі, а не в усній домовленості. Історію можна підняти
+            через місяць і побачити, хто й коли що дозволив.</p>
+        </div>
+        <div class="card def">
+          <p class="def__tag">Процес</p>
+          <h3>Виконавець перестає бути кур&rsquo;єром</h3>
+          <p>Менеджер більше не ходить нагадувати. Його задача — створити заявку, далі процес
+            рухається сам і повідомляє про результат.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="faq-h">Часті питання про цей кейс</h2>
+      </div>
+
+      <div class="faq">
+        <details class="more">
+          <summary>Що буде, якщо відповідальних кілька?</summary>
+          <div class="more__body">
+            <p>Запит надсилається всім, хто має право вирішувати. Кожен бачить його у себе в чаті
+              й може прийняти рішення. Правило, за яким заявка вважається погодженою — перший голос,
+              більшість чи обов&rsquo;язкова згода конкретної людини — задається під процес компанії,
+              а не зашите в боті.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Чи можна подивитися деталі заявки перед рішенням?</summary>
+          <div class="more__body">
+            <p>У повідомленні є короткий опис із ключовими полями: контрагент, сума, призначення,
+              автор заявки. За потреби бот прикладає файл із повними даними — рахунок, специфікацію
+              або друковану форму документа з бази.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Чи лишається слід рішення в обліковій системі?</summary>
+          <div class="more__body">
+            <p>Так. Рішення записується в базу як дія конкретної людини з часом і коментарем,
+              якщо він був. Це не повідомлення в чаті, яке можна видалити, а запис в обліковій
+              системі, за яким потім можна підняти історію погодження.</p>
+          </div>
+        </details>
+
+        <details class="more">
+          <summary>Чи потрібен керівнику доступ до бази або VPN?</summary>
+          <div class="more__body">
+            <p>Ні. Керівник працює у звичайному Telegram на телефоні. Робоче місце в обліковій
+              системі, ліцензія та підключення до корпоративної мережі для погодження не потрібні —
+              з базою спілкується бот, а не людина.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight section--alt" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div class="cta">
+        <h2 id="cta-h">У вас теж щось чекає на підпис?</h2>
+        <p>Опишіть процес погодження — розберемо, чи можна його перенести в месенджер,
+          і скажемо чесно, якщо ні.</p>
+        <div class="hero__actions">
+          <a class="btn" href="https://t.me/vlsv00" target="_blank" rel="noopener">Написати в Telegram</a>
+          <a class="btn btn--onlight" href="/cases">Інші кейси</a>
+          <a class="btn btn--onlight" href="/ai-agents">Як ми працюємо</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="site-foot__grid">
+      <div>
+        <span class="brand">VLAS<span>PRO</span></span>
+        <p>Автоматизація бізнес-процесів: Telegram-боти, AI-агенти та інтеграція з обліковими системами.</p>
+      </div>
+      <div>
+        <h2>Сторінки</h2>
+        <ul>
+          <li><a href="/">Головна</a></li>
+          <li><a href="/ai-agents">AI-агенти та боти</a></li>
+          <li><a href="/cases">Кейси</a></li>
+          <li><a href="/contacts">Контакти</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Контакти</h2>
+        <ul>
+          <li><a href="tel:+380672675820">+38 (067) 267-58-20</a></li>
+          <li><a href="mailto:vlaspro.com.ua@gmail.com">vlaspro.com.ua@gmail.com</a></li>
+          <li><a href="https://t.me/VLAS_PRO_UA" target="_blank" rel="noopener">Канал Telegram: VLAS_PRO_UA</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VbALwBC1NCrLpum86T37" target="_blank" rel="noopener">Канал WhatsApp: VLAS PRO</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="site-foot__bottom">
+      <span>© 2026 VLASPRO. Власюк Володимир Анатолійович.</span>
+      <span>Автоматизація. Інтеграція. Оптимізація.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
