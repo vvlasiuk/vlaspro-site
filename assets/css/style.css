@@ -16,6 +16,11 @@
   --line:       #d9e1ea;
   --accent:     #0b7c8a;
   --accent-2:   #086673;
+  /* Темні плями сторінки — тієї самої бірюзової родини, що й акцент,
+     від світлішої вгорі (смуга меню) до найглибшої внизу (підвал). */
+  --deep-1:     #0b5f6b;
+  --deep-2:     #123c46;
+  --deep-3:     #0a2f36;
   --accent-bg:  #e6f4f6;
   --plum:       #4f474e;
 
@@ -80,9 +85,11 @@ li::marker { color: var(--accent); }
 /* --- header ------------------------------------------------------------- */
 .site-head {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(27, 39, 64, .96);
+  /* Смуга меню — єдина кольорова пляма на сторінці, тому вона взята
+     не майже чорним, а фірмовим бірюзовим: від темного краю до акцентного. */
+  background: linear-gradient(90deg, var(--deep-1) 0%, var(--accent) 100%);
   backdrop-filter: saturate(140%) blur(8px);
-  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
 }
 
 .site-head__inner {
@@ -96,7 +103,7 @@ li::marker { color: var(--accent); }
   font-size: 1.18rem; color: #fff; text-decoration: none; white-space: nowrap;
 }
 .brand:hover { color: #fff; }
-.brand span { color: #7fd3dd; }
+.brand span { color: #9ff0f8; }
 
 .nav { margin-left: auto; display: flex; align-items: center; gap: clamp(.35rem, 2vw, 1.1rem); }
 
@@ -110,8 +117,10 @@ li::marker { color: var(--accent); }
 .nav a:hover { color: #fff; background: rgba(255, 255, 255, .09); }
 .nav a[aria-current="page"] { color: #fff; box-shadow: inset 0 -2px 0 #7fd3dd; }
 
-.nav .btn { margin-left: .35rem; color: #fff; }
-.nav .btn:hover { color: #fff; }
+/* кнопка Telegram стоїть на бірюзовій смузі, тому вона інверсна:
+   біла з бірюзовим написом, інакше зливалася б із тлом */
+.nav .btn { margin-left: .35rem; background: #fff; color: var(--accent-2); }
+.nav .btn:hover { background: #fff; color: var(--accent-2); box-shadow: 0 6px 18px rgba(0, 0, 0, .18); }
 
 /* narrow screens: the wordmark keeps its row, the links move below it */
 @media (max-width: 640px) {
@@ -161,15 +170,16 @@ li::marker { color: var(--accent); }
 
 /* page hero — однакова шапка на всіх сторінках, включно з головною */
 .pagehead {
-  background: linear-gradient(180deg, #1b2740 0%, #24324f 100%);
-  color: rgba(255, 255, 255, .78);
+  background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--line);
   padding: clamp(2.6rem, 7vw, 4.6rem) 0 clamp(2.4rem, 6vw, 4rem);
   text-align: center;
 }
 /* Заголовок, підпис і напис VLAS PRO однакові на всіх сторінках:
    один шрифт, одна насиченість, один розмір. */
 .pagehead h1 {
-  color: #fff; font-weight: 300; line-height: 1.2;
+  color: var(--ink); font-weight: 300; line-height: 1.2;
   font-size: clamp(1.9rem, 5.5vw, 3rem);
   margin-bottom: .3em;
 }
@@ -178,29 +188,17 @@ li::marker { color: var(--accent); }
    80ch підібрано так, щоб довгий підпис на сторінці AI-агентів лягав
    у два рядки приблизно однакової довжини (778 і 783 px), а не 915 і 646. */
 .pagehead p:not(.pagehead__mark) { max-width: 80ch; margin-inline: auto; }
-.pagehead .kicker { color: #7fd3dd; margin-bottom: 1rem; }
+.pagehead .kicker { color: var(--accent-2); margin-bottom: 1rem; }
 
 .pagehead__mark {
   font-family: var(--mark); font-weight: 900;
   font-size: clamp(1.55rem, 5vw, 2.4rem);
-  letter-spacing: .14em; color: #fff;
+  letter-spacing: .14em; color: var(--ink);
   line-height: 1; margin: 0 0 .9rem;
 }
 
-/* головна: та сама шапка, але з банером під темною заливкою */
-.pagehead--home { position: relative; isolation: isolate; overflow: hidden; }
-
-.pagehead--home::before {
-  content: ''; position: absolute; inset: 0; z-index: -2;
-  background: url('../img/banner.jpg') center 42% / cover no-repeat;
-  /* браузери з підтримкою image-set візьмуть webp (26 КБ замість 86 КБ) */
-  background-image: image-set(url('../img/banner.webp') type('image/webp'),
-                              url('../img/banner.jpg') type('image/jpeg'));
-}
-.pagehead--home::after {
-  content: ''; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(27, 39, 64, .90) 0%, rgba(27, 39, 64, .86) 55%, rgba(36, 50, 79, .95) 100%);
-}
+/* Головна має ту саму світлу шапку, що й решта сторінок: фонову фотографію
+   прибрано, темним на сторінці лишається тільки рядок меню. */
 
 /* заголовок має лягати в один рядок на будь-якій ширині.
    Текст завширшки ~17.8em; 4.7vw лишає запас навіть на 320 px з урахуванням
@@ -211,6 +209,11 @@ li::marker { color: var(--accent); }
 .pagehead--home h1 { font-size: min(3rem, 4.7vw); }
 
 .pagehead--home .hero__actions { margin-top: 1.7rem; }
+
+/* .btn--onlight задумана для темних блоків (CTA внизу сторінок); у світлій
+   шапці та сама кнопка має читатися як другорядна: біла з рамкою. */
+.pagehead .btn--onlight { background: #fff; color: var(--ink); border-color: var(--line); }
+.pagehead .btn--onlight:hover { background: #fff; color: var(--ink); border-color: #b9c7d6; box-shadow: var(--shadow); }
 
 /* на малих екранах шапка стискається — однаково на всіх сторінках */
 @media (max-width: 480px) {
@@ -390,7 +393,7 @@ details.more[open] > summary { margin-bottom: .4rem; }
    до нечитабельних 143 px. */
 .trybot {
   margin-top: 1.6rem;
-  background: linear-gradient(135deg, #1b2740 0%, #123c46 100%);
+  background: linear-gradient(135deg, var(--deep-2) 0%, var(--deep-1) 100%);
   color: rgba(255, 255, 255, .82);
   border-radius: var(--radius);
   padding: clamp(1.3rem, 3.5vw, 1.9rem);
@@ -403,13 +406,20 @@ details.more[open] > summary { margin-bottom: .4rem; }
 }
 .trybot__tag::before { content: ''; width: 22px; height: 2px; background: #7fd3dd; }
 
-.trybot h3 {
+/* На головній заголовок блоку — h3, на сторінці кейсу — h2 (бо там це
+   окремий розділ сторінки). Колір потрібен обом, інакше другий лишається
+   темним кольором тексту на темному тлі. */
+.trybot h2, .trybot h3 {
   font-family: var(--slab); color: #fff;
   font-size: clamp(1.1rem, 2.6vw, 1.35rem);
   margin: 0 0 .5rem;
 }
 .trybot p { font-size: .96rem; margin: 0 0 1rem; }
 .trybot__btn { margin-bottom: .8rem; }
+
+/* тло блоку бірюзове, тому бірюзова кнопка на ньому не читається */
+.trybot .btn { background: #fff; color: var(--accent-2); border-color: #fff; }
+.trybot .btn:hover { background: #fff; color: var(--accent-2); box-shadow: 0 6px 18px rgba(0, 0, 0, .22); }
 
 .trybot__note {
   font-size: .85rem; color: rgba(255, 255, 255, .58);
@@ -526,8 +536,8 @@ details.more[open] > summary { margin-bottom: .4rem; }
 
 /* --- CTA band ----------------------------------------------------------- */
 .cta {
-  background: linear-gradient(135deg, #1b2740 0%, #123c46 100%);
-  color: rgba(255, 255, 255, .8);
+  background: linear-gradient(135deg, var(--deep-1) 0%, var(--deep-2) 100%);
+  color: rgba(255, 255, 255, .85);
   border-radius: var(--radius);
   padding: clamp(1.8rem, 5vw, 3.2rem);
   text-align: center;
@@ -536,9 +546,16 @@ details.more[open] > summary { margin-bottom: .4rem; }
 .cta p { max-width: 56ch; margin-inline: auto; }
 .cta__actions { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; margin-top: 1.6rem; }
 
+/* Блок CTA тепер сам бірюзовий, тому бірюзова кнопка на ньому зливалася б.
+   Головна дія стає білою, другорядна — прозорою з білою рамкою. */
+.cta .btn { background: #fff; color: var(--accent-2); border-color: #fff; }
+.cta .btn:hover { background: #fff; color: var(--accent-2); box-shadow: 0 6px 18px rgba(0, 0, 0, .22); }
+.cta .btn--onlight { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .55); }
+.cta .btn--onlight:hover { background: rgba(255, 255, 255, .12); color: #fff; border-color: #fff; box-shadow: none; }
+
 /* --- footer ------------------------------------------------------------- */
 .site-foot {
-  background: #16203a; color: rgba(255, 255, 255, .62);
+  background: var(--deep-3); color: rgba(255, 255, 255, .66);
   padding: clamp(2.2rem, 6vw, 3.4rem) 0 1.6rem;
   font-size: .95rem;
 }
@@ -547,7 +564,7 @@ details.more[open] > summary { margin-bottom: .4rem; }
 
 .site-foot h2 { color: #fff; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; font-family: var(--sans); margin-bottom: 1rem; }
 .site-foot a { color: rgba(255, 255, 255, .78); text-decoration: none; }
-.site-foot a:hover { color: #7fd3dd; text-decoration: underline; }
+.site-foot a:hover { color: #9ff0f8; text-decoration: underline; }
 .site-foot ul { list-style: none; margin: 0; padding: 0; }
 .site-foot li { margin-bottom: .55rem; }
 .site-foot .brand { font-size: 1.05rem; margin-bottom: .8rem; }
