@@ -1,7 +1,32 @@
-/* VLASPRO — the only script on the site: the presentation slider.
-   Without JS the slides stay usable as a horizontally scrollable strip. */
+/* VLASPRO — єдиний скрипт сайту: тінь під смугою меню при прокрутці
+   та слайдер презентації. Без JS сторінка повністю робоча: смуга просто
+   лишається без тіні, а слайди гортаються як горизонтальна стрічка. */
 (function () {
   'use strict';
+
+  /* --- тінь під закріпленою смугою меню ---------------------------------
+     Смуга темна, сторінка світла, а її нижня рамка — біла напівпрозора,
+     тобто на світлому тлі невидима. Поки сторінка не прокручена, смуга
+     має лежати на тлі; щойно контент заходить під неї — стає верхнім
+     шаром із тінню. */
+  var head = document.querySelector('.site-head');
+  if (head) {
+    var stuck = null;
+    var tick = false;
+    var sync = function () {
+      tick = false;
+      var now = window.pageYOffset > 4;
+      if (now === stuck) return;
+      stuck = now;
+      head.classList.toggle('is-stuck', now);
+    };
+    window.addEventListener('scroll', function () {
+      if (tick) return;
+      tick = true;
+      window.requestAnimationFrame(sync);
+    }, { passive: true });
+    sync();
+  }
 
   document.querySelectorAll('[data-slider]').forEach(function (root) {
     var view  = root.querySelector('[data-slider-viewport]');

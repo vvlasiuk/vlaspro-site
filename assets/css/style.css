@@ -11,13 +11,19 @@
   --ink-2:      #41506b;
   --ink-3:      #58657e;
   --bg:         #eef2f6;
-  --bg-2:       #e3eaf1;
+  /* Смуга --bg-2 раніше відрізнялася від основного тла на 3 %, через що
+     .section--alt читалася як та сама площина. Тепер різниця ~7 % —
+     помітна, але ще спокійна. */
+  --bg-2:       #dce6ee;
   --card:       #ffffff;
-  --line:       #d9e1ea;
+  --line:       #d3dde8;
   --accent:     #0b7c8a;
   --accent-2:   #086673;
   /* Темні плями сторінки — тієї самої бірюзової родини, що й акцент,
      від світлішої вгорі (смуга меню) до найглибшої внизу (підвал). */
+  /* --deep-0 — правий, світліший край смуги меню. Темніший за --accent,
+     бо на ньому лежить текст пунктів меню: з --accent виходило 3.8:1. */
+  --deep-0:     #0a6e7a;
   --deep-1:     #0b5f6b;
   --deep-2:     #123c46;
   --deep-3:     #0a2f36;
@@ -32,6 +38,11 @@
   --radius:    14px;
   --shadow:    0 1px 2px rgba(27, 39, 64, .06), 0 8px 24px rgba(27, 39, 64, .07);
   --shadow-lg: 0 2px 4px rgba(27, 39, 64, .07), 0 18px 50px rgba(27, 39, 64, .12);
+
+  /* Одна мова наведення для всіх клікабельних поверхонь: однаковий підйом
+     і однакова тривалість, незалежно від того, кнопка це, плитка чи чіп. */
+  --lift:  translateY(-2px);
+  --ease:  .18s ease;
 }
 
 /* --- base --------------------------------------------------------------- */
@@ -81,16 +92,29 @@ li::marker { color: var(--accent); }
 .skip:focus { left: 0; color: #fff; }
 
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+/* На темних плямах (смуга меню, CTA, демо-блок, підвал) бірюзовий контур
+   зливається з тлом, тому там він білий. */
+.site-head :focus-visible,
+.cta :focus-visible,
+.trybot :focus-visible,
+.site-foot :focus-visible { outline-color: #fff; }
 
 /* --- header ------------------------------------------------------------- */
 .site-head {
   position: sticky; top: 0; z-index: 40;
   /* Смуга меню — єдина кольорова пляма на сторінці, тому вона взята
      не майже чорним, а фірмовим бірюзовим: від темного краю до акцентного. */
-  background: linear-gradient(90deg, var(--deep-1) 0%, var(--accent) 100%);
-  backdrop-filter: saturate(140%) blur(8px);
+  background: linear-gradient(90deg, var(--deep-1) 0%, var(--deep-0) 100%);
+  /* backdrop-filter тут нічого не давав: тло смуги непрозоре, крізь неї
+     нічого не видно, а шар композитингу створювався на кожному кадрі. */
   border-bottom: 1px solid rgba(255, 255, 255, .12);
+  transition: box-shadow .22s ease;
 }
+
+/* Біла рамка знизу невидима на світлій сторінці, тож поки сторінка не
+   прокручена, смуга просто лежить на тлі. Щойно контент заїжджає під неї —
+   з'являється тінь і смуга стає явно верхнім шаром. Клас вішає main.js. */
+.site-head.is-stuck { box-shadow: 0 6px 22px rgba(10, 47, 54, .22); }
 
 .site-head__inner {
   display: flex; align-items: center; gap: 1rem;
@@ -108,7 +132,7 @@ li::marker { color: var(--accent); }
 .nav { margin-left: auto; display: flex; align-items: center; gap: clamp(.35rem, 2vw, 1.1rem); }
 
 .nav a {
-  color: rgba(255, 255, 255, .82);
+  color: rgba(255, 255, 255, .92);
   text-decoration: none;
   font-size: .95rem; font-weight: 500;
   padding: .5rem .55rem; border-radius: 8px;
@@ -128,7 +152,12 @@ li::marker { color: var(--accent); }
   .brand { margin-inline: auto; }
   /* чотири пункти меню не завжди вміщаються в один рядок — дозволяємо перенос */
   .nav { margin-left: 0; width: 100%; justify-content: center; gap: .15rem; flex-wrap: wrap; }
-  .nav .btn { display: none; }
+  /* Кнопку Telegram раніше тут ховали. Але саме на телефоні месенджер за
+     один дотик, тож вона лишається — без підпису, самою іконкою. Текст
+     у DOM зберігається, тому доступна назва кнопки не змінюється. */
+  .nav .btn { padding: .42rem .62rem; margin-left: .3rem; }
+  .nav .btn .btn__txt { display: none; }
+  .nav .btn svg { width: 1.2em; height: 1.2em; }
   .nav a { font-size: .92rem; padding: .45rem .5rem; }
 }
 
@@ -144,9 +173,9 @@ li::marker { color: var(--accent); }
   color: #fff; background: var(--accent);
   border: 1px solid transparent; border-radius: 999px;
   text-decoration: none; cursor: pointer;
-  transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+  transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
 }
-.btn:hover { background: var(--accent-2); color: #fff; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(11, 124, 138, .28); }
+.btn:hover { background: var(--accent-2); color: #fff; transform: var(--lift); box-shadow: 0 6px 18px rgba(11, 124, 138, .28); }
 .btn svg { width: 1.05em; height: 1.05em; flex: none; fill: currentColor; }
 
 .btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
@@ -176,37 +205,35 @@ li::marker { color: var(--accent); }
   padding: clamp(2.6rem, 7vw, 4.6rem) 0 clamp(2.4rem, 6vw, 4rem);
   text-align: center;
 }
-/* Заголовок, підпис і напис VLAS PRO однакові на всіх сторінках:
-   один шрифт, одна насиченість, один розмір. */
+/* Напис «VLAS PRO» під смугою меню прибрано з усіх сторінок: він дублював
+   логотип, що стоїть на 40 px вище тим самим шрифтом, відтісняв H1 униз
+   і на телефоні був більшим за нього (24.8 px проти 17.6 px). */
 .pagehead h1 {
-  color: var(--ink); font-weight: 300; line-height: 1.2;
+  /* 300 добре виглядало на 3rem, але на 1.9rem слаб такої ваги виходив
+     худим, а <b> усередині давав стрибок 300 → 700 в одному рядку. */
+  color: var(--ink); font-weight: 400; line-height: 1.2;
   font-size: clamp(1.9rem, 5.5vw, 3rem);
   margin-bottom: .3em;
+  text-wrap: balance;
 }
 .pagehead h1 b { font-weight: 700; }
-/* :not() — бо напис VLAS PRO вище теж є <p> і ширина його не стосується.
-   80ch підібрано так, щоб довгий підпис на сторінці AI-агентів лягав
-   у два рядки приблизно однакової довжини (778 і 783 px), а не 915 і 646. */
-.pagehead p:not(.pagehead__mark) { max-width: 80ch; margin-inline: auto; }
+/* Було 80ch заради двох рядків однакової довжини на сторінці AI-агентів.
+   Але центрований рядок завширшки 80ch важко читати: око не знаходить
+   початок наступного. 60ch — межа комфорту для центрованого тексту,
+   а за однакову довжину рядків тепер відповідає text-wrap: balance. */
+.pagehead p { max-width: 60ch; margin-inline: auto; text-wrap: balance; }
 .pagehead .kicker { color: var(--accent-2); margin-bottom: 1rem; }
 
-.pagehead__mark {
-  font-family: var(--mark); font-weight: 900;
-  font-size: clamp(1.55rem, 5vw, 2.4rem);
-  letter-spacing: .14em; color: var(--ink);
-  line-height: 1; margin: 0 0 .9rem;
-}
 
 /* Головна має ту саму світлу шапку, що й решта сторінок: фонову фотографію
    прибрано, темним на сторінці лишається тільки рядок меню. */
 
-/* заголовок має лягати в один рядок на будь-якій ширині.
-   Текст завширшки ~17.8em; 4.7vw лишає запас навіть на 320 px з урахуванням
-   смуги прокрутки, яку vw не віднімає. Перенос свідомо не заборонений
-   (без white-space: nowrap): якщо шрифт не завантажиться і підставиться
-   ширший запасний, рядок просто розділиться надвоє замість того,
-   щоб виїхати за екран. */
-.pagehead--home h1 { font-size: min(3rem, 4.7vw); }
+/* Було min(3rem, 4.7vw) — заради одного рядка на будь-якій ширині. Ціна
+   виявилася завеликою: на 375 px виходило 17.6 px, тобто головне речення
+   сайту було дрібнішим за звичайний абзац (17 px) і залишалося таким аж
+   до 647 px. Нижню межу піднято до 1.75rem; на телефоні заголовок займає
+   два рядки — це нормально і краще, ніж нечитабельний один. */
+.pagehead--home h1 { font-size: clamp(1.75rem, 4.7vw, 3rem); }
 
 .pagehead--home .hero__actions { margin-top: 1.7rem; }
 
@@ -218,7 +245,6 @@ li::marker { color: var(--accent); }
 /* на малих екранах шапка стискається — однаково на всіх сторінках */
 @media (max-width: 480px) {
   .pagehead { padding-block: 2.2rem 2rem; }
-  .pagehead__mark { margin-bottom: .7rem; }
   .pagehead .kicker { margin-bottom: .8rem; }
   .pagehead--home .hero__actions { margin-top: 1.3rem; }
 }
@@ -226,10 +252,15 @@ li::marker { color: var(--accent); }
 /* --- sections ----------------------------------------------------------- */
 .section { padding: clamp(2.8rem, 8vw, 5.5rem) 0; }
 .section--tight { padding-block: clamp(2rem, 6vw, 3.5rem); }
-.section--alt { background: var(--bg-2); }
+/* Тонкі лінії зверху і знизу дають смузі чіткий край — без них навіть
+   глибше тло на великому екрані розмивається в градієнт. */
+.section--alt {
+  background: var(--bg-2);
+  border-block: 1px solid var(--line);
+}
 
 .section__head { max-width: 66ch; margin: 0 auto clamp(1.8rem, 5vw, 3rem); text-align: center; }
-.section__head h2 { font-size: clamp(1.65rem, 4vw, 2.35rem); }
+.section__head h2 { font-size: clamp(1.65rem, 4vw, 2.35rem); text-wrap: balance; }
 .section__head p { color: var(--ink-2); }
 
 .lead {
@@ -277,15 +308,66 @@ li::marker { color: var(--accent); }
   padding: 1.5rem 1.5rem 1.6rem;
   text-decoration: none; color: var(--ink-2);
   box-shadow: var(--shadow);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+  overflow: hidden;
 }
-.tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: #c3d2e0; color: var(--ink-2); }
+.tile:hover { transform: var(--lift); box-shadow: var(--shadow-lg); border-color: #b8cada; color: var(--ink-2); }
 
-.tile__num {
-  font: 700 .8rem/1 var(--sans); letter-spacing: .14em;
-  color: var(--accent-2); background: var(--accent-bg);
-  padding: .42rem .6rem; border-radius: 6px; align-self: flex-start;
+/* --- плитка з мініатюрою (сітка кейсів на головній) --------------------- */
+/* Картинки кейсів уже є і працюють на сторінці /cases; на головній та сама
+   сітка була суцільним сірим текстом. Мініатюра дає сітці ритм і робить
+   кейс упізнаваним ще до кліку. */
+.tile--media { padding: 0; gap: 0; }
+.tile--media .tile__thumb {
+  display: block; flex: none;
+  aspect-ratio: 16 / 10; overflow: hidden;
+  background: var(--bg-2); border-bottom: 1px solid var(--line);
 }
+.tile--media .tile__thumb picture { display: block; height: 100%; }
+
+/* Кейс 05 ілюстрований лише текстовими слайдами презентації — у мініатюрі
+   вони виглядали б як обрізаний аркуш із літерами. Замість фото — панель
+   у кольорах сайту з позначенням обох месенджерів. */
+.tile--media .tile__thumb--mark {
+  display: flex; align-items: center; justify-content: center; gap: .9rem;
+  background: linear-gradient(135deg, var(--deep-2) 0%, var(--deep-1) 100%);
+  border-bottom: 0;
+}
+.tile--media .tile__thumb--mark svg { width: 40px; height: 40px; fill: #fff; opacity: .95; }
+.tile--media .tile__thumb--mark b {
+  font: 900 1.6rem/1 var(--mark); letter-spacing: .06em;
+  color: #9ff0f8;
+}
+.tile--media .tile__thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .45s ease;
+}
+.tile--media:hover .tile__thumb img { transform: scale(1.045); }
+.tile__body {
+  flex: 1; display: flex; flex-direction: column; gap: .7rem;
+  padding: 1.3rem 1.4rem 1.5rem;
+}
+
+/* плитка-посилання «усі кейси» — закриває порожню комірку в кінці сітки */
+.tile--more {
+  justify-content: center; align-items: center; text-align: center;
+  background: var(--accent-bg); border-color: #bfdfe4; border-style: dashed;
+  gap: .4rem;
+}
+.tile--more:hover { border-color: #9ccfd6; }
+.tile--more h3 { color: var(--accent-2); }
+.tile--more .tile__go { margin-top: .2rem; }
+
+/* Була тонована плашка зі скругленням — тобто рівно та сама форма, що й
+   у клікабельних .jump__list a та summary. Тепер у підписів свій вигляд
+   (риска + капітель, як у .case__badge), а тонована плашка лишилася
+   ознакою того, на що можна натиснути. */
+.tile__num {
+  display: inline-flex; align-items: center; gap: .5rem; align-self: flex-start;
+  font: 700 .76rem/1 var(--sans); letter-spacing: .16em;
+  color: var(--accent-2);
+}
+.tile__num::before { content: ''; flex: none; width: 22px; height: 2px; background: var(--accent); }
 .tile h3 { font-size: 1.09rem; margin: 0; line-height: 1.35; }
 .tile p { font-size: .95rem; color: var(--ink-3); margin: 0; }
 .tile__go { margin-top: auto; font-weight: 600; font-size: .92rem; color: var(--accent); }
@@ -477,13 +559,13 @@ details.more[open] > summary { margin-bottom: .4rem; }
 .slider__viewport {
   display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
   gap: 0; border-radius: var(--radius);
-  background: #0f1626; border: 1px solid var(--line); box-shadow: var(--shadow);
+  background: var(--deep-3); border: 1px solid var(--line); box-shadow: var(--shadow);
   scrollbar-width: none;
 }
 .slider__viewport::-webkit-scrollbar { display: none; }
 
 .slider__slide { flex: 0 0 100%; scroll-snap-align: center; }
-.slider__slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: #0f1626; }
+.slider__slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; background: var(--deep-3); }
 
 .slider__bar {
   display: flex; align-items: center; justify-content: center; gap: .8rem;
@@ -494,9 +576,9 @@ details.more[open] > summary { margin-bottom: .4rem; }
   display: inline-flex; align-items: center; justify-content: center;
   border: 1px solid var(--line); background: var(--card); color: var(--ink);
   border-radius: 50%; cursor: pointer; box-shadow: var(--shadow);
-  transition: background .15s ease, color .15s ease, opacity .15s ease;
+  transition: background var(--ease), color var(--ease), transform var(--ease), opacity var(--ease);
 }
-.slider__btn:hover:not(:disabled) { background: var(--ink); color: #fff; border-color: var(--ink); }
+.slider__btn:hover:not(:disabled) { background: var(--ink); color: #fff; border-color: var(--ink); transform: var(--lift); }
 .slider__btn:disabled { opacity: .35; cursor: default; }
 .slider__btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 
@@ -508,8 +590,19 @@ details.more[open] > summary { margin-bottom: .4rem; }
 .slider__hint { text-align: center; font-size: .88rem; color: var(--ink-3); margin-top: .55rem; }
 
 /* --- contacts ----------------------------------------------------------- */
+/* align-items: start лишав під короткою лівою колонкою порожнє дно картки.
+   Тепер колонки тягнуться на однакову висоту, між ними лінія (як у .about),
+   а кнопки притиснуті донизу — низ картки заповнений з обох боків. */
 .contact { display: grid; gap: clamp(1.5rem, 4vw, 2.5rem); }
-@media (min-width: 860px) { .contact { grid-template-columns: 1fr 1fr; align-items: start; } }
+@media (min-width: 860px) {
+  .contact { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; }
+  .contact__side {
+    padding-right: clamp(1.5rem, 3vw, 2.4rem);
+    border-right: 1px solid var(--line);
+  }
+}
+.contact__side { display: flex; flex-direction: column; }
+.contact__side .hero__actions { margin-top: auto; padding-top: 1.2rem; }
 
 .contact__name { font-size: clamp(1.35rem, 3vw, 1.8rem); margin-bottom: .2em; }
 .contact__role { color: var(--ink-3); margin-bottom: 1.6rem; }
@@ -591,8 +684,9 @@ details.more[open] > summary { margin-bottom: .4rem; }
   font-size: .92rem; font-weight: 600; text-decoration: none;
   color: var(--accent-2); background: var(--accent-bg);
   border: 1px solid transparent; border-radius: 999px;
+  transition: background var(--ease), border-color var(--ease), transform var(--ease);
 }
-.jump__list a:hover { background: #d5ebee; border-color: #b6dde2; color: var(--accent-2); }
+.jump__list a:hover { background: #d5ebee; border-color: #b6dde2; color: var(--accent-2); transform: var(--lift); }
 
 /* сітка у дві колонки */
 .grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); }
