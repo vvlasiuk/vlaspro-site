@@ -48,7 +48,12 @@
 /* --- base --------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* дозволяє анімувати block-size до auto — потрібне для розкриття <details> */
+  interpolate-size: allow-keywords;
+}
 
 body {
   margin: 0;
@@ -836,8 +841,94 @@ details.more[open] > summary { margin-bottom: .4rem; }
 .faq details.more[open] > summary { margin-bottom: 0; color: var(--accent-2); }
 .faq .more__body { padding: 0 .6rem 1.2rem; }
 
+
+/* --- рух ---------------------------------------------------------------- */
+/* Увесь рух тут службовий: показує, що з'явилося, що розкрилося, куди веде
+   посилання і де ти в довгому тексті. Нічого не рухається саме собою.
+   Наведення сховане за @media (hover: hover), щоб на дотику не лишалося
+   «залиплих» станів, а поява блоків узагалі не вмикається, якщо в системі
+   просять менше руху. */
+
+/* поява блоків при прокрутці — клас вішає main.js і знімає його, щойно
+   блок проявився, тож наведення на плитку далі працює як завжди */
+.reveal { opacity: 0; transform: translateY(14px); }
+.reveal.is-in {
+  opacity: 1; transform: none;
+  transition: opacity .5s ease, transform .5s ease;
+}
+
+/* стрілка підпису їде вправо разом із підйомом картки */
+.tile__go::after {
+  content: '→'; display: inline-block; margin-left: .35em;
+  transition: transform var(--ease);
+}
+@media (hover: hover) {
+  .tile:hover .tile__go::after { transform: translateX(4px); }
+}
+
+/* підкреслення пункту меню росте зліва; стоїть там само, де позначка
+   активної сторінки, тому обидва стани виглядають як одне й те саме */
+@media (hover: hover) {
+  .nav a:not(.btn) { position: relative; }
+  .nav a:not(.btn)::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+    background: #7fd3dd;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .2s ease;
+  }
+  .nav a:not(.btn):hover::after { transform: scaleX(1); }
+}
+
+/* літачок на кнопці Telegram трохи злітає — тільки на тій кнопці, що веде
+   в месенджер, бо решта іконок не про політ */
+@media (hover: hover) {
+  .btn[href*="t.me"] svg { transition: transform var(--ease); }
+  .btn[href*="t.me"]:hover svg { transform: translate(2px, -2px) rotate(-8deg); }
+}
+
+/* розкриття <details> з нульової висоти до auto. Там, де браузер ще не знає
+   ::details-content, блок розкривається миттєво — рівно як дотепер. */
+@supports selector(::details-content) {
+  details.more::details-content {
+    block-size: 0; overflow: hidden; opacity: 0;
+    transition: block-size .32s ease, opacity .25s ease,
+                content-visibility .32s allow-discrete;
+  }
+  details.more[open]::details-content { block-size: auto; opacity: 1; }
+}
+
+/* мініатюри кейсів проявляються замість того, щоб вискочити з сірого
+   прямокутника. Клас отримують лише ті картинки, які на момент запуску
+   скрипта ще не завантажені, — намальована картинка не блимне. */
+.tile__thumb img.is-fading { opacity: 0; transition: opacity .4s ease, transform .45s ease; }
+.tile__thumb img.is-fading.is-loaded { opacity: 1; }
+
+/* сусідні кадри слайдера притемнені, тому видно, що стрічка їде.
+   Клас is-js вішає main.js: без скрипта всі кадри лишаються звичайними. */
+.slider.is-js .slider__slide { opacity: .5; transition: opacity .3s ease; }
+.slider.is-js .slider__slide.is-current { opacity: 1; }
+
+/* смуга прогресу читання на довгих сторінках; елемент створює main.js */
+.readbar {
+  position: fixed; left: 0; top: 0; z-index: 60;
+  width: 100%; height: 3px;
+  background: #7fd3dd;
+  transform: scaleX(0); transform-origin: 0 50%;
+}
+
+/* прокручена смуга меню трохи підбирається. Тільки на широких екранах:
+   на телефоні пункти меню стоять другим рядком і зміна висоти смикала б
+   верстку під нею. */
+@media (min-width: 641px) {
+  .site-head__inner { transition: min-height .22s ease; }
+  .site-head.is-compact .site-head__inner { min-height: 54px; }
+}
+
 /* --- misc --------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+  /* main.js і так не вмикає появу при reduce, але якщо налаштування
+     змінили вже на відкритій сторінці — блоки не лишаться невидимими */
+  .reveal, .reveal.is-in { opacity: 1 !important; transform: none !important; }
 }
