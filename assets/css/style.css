@@ -28,6 +28,9 @@
   --deep-2:     #123c46;
   --deep-3:     #0a2f36;
   --accent-bg:  #e6f4f6;
+  /* рамка світлих акцентних панелей (.trybot, .cta) — тон між
+     --accent-bg і --accent, щоб панель читалася на тлі --bg без темної плями */
+  --accent-line: #bfe2e7;
   --plum:       #4f474e;
 
   --sans:  'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
@@ -97,11 +100,10 @@ li::marker { color: var(--accent); }
 .skip:focus { left: 0; color: #fff; }
 
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
-/* На темних плямах (смуга меню, CTA, демо-блок, підвал) бірюзовий контур
-   зливається з тлом, тому там він білий. */
+/* На темних смугах (меню, підвал) бірюзовий контур зливається з тлом,
+   тому там він білий. CTA і демо-блок стали світлими панелями — на них
+   працює звичайний бірюзовий контур. */
 .site-head :focus-visible,
-.cta :focus-visible,
-.trybot :focus-visible,
 .site-foot :focus-visible { outline-color: #fff; }
 
 /* --- header ------------------------------------------------------------- */
@@ -480,8 +482,10 @@ details.more[open] > summary { margin-bottom: .4rem; }
    до нечитабельних 143 px. */
 .trybot {
   margin-top: 1.6rem;
-  background: linear-gradient(135deg, var(--deep-2) 0%, var(--deep-1) 100%);
-  color: rgba(255, 255, 255, .82);
+  background: var(--accent-bg);
+  color: var(--ink-2);
+  border: 1px solid var(--accent-line);
+  border-left: 4px solid var(--accent);
   border-radius: var(--radius);
   padding: clamp(1.3rem, 3.5vw, 1.9rem);
 }
@@ -489,27 +493,23 @@ details.more[open] > summary { margin-bottom: .4rem; }
 .trybot__tag {
   display: inline-flex; align-items: center; gap: .5rem;
   font: 700 .74rem/1 var(--sans); letter-spacing: .18em; text-transform: uppercase;
-  color: #7fd3dd; margin-bottom: .7rem;
+  color: var(--accent-2); margin-bottom: .7rem;
 }
-.trybot__tag::before { content: ''; width: 22px; height: 2px; background: #7fd3dd; }
+.trybot__tag::before { content: ''; width: 22px; height: 2px; background: var(--accent); }
 
 /* На головній заголовок блоку — h3, на сторінці кейсу — h2 (бо там це
-   окремий розділ сторінки). Колір потрібен обом, інакше другий лишається
-   темним кольором тексту на темному тлі. */
+   окремий розділ сторінки). Розмір задається обом, щоб блок виглядав
+   однаково незалежно від рівня заголовка. */
 .trybot h2, .trybot h3 {
-  font-family: var(--slab); color: #fff;
+  font-family: var(--slab); color: var(--ink);
   font-size: clamp(1.1rem, 2.6vw, 1.35rem);
   margin: 0 0 .5rem;
 }
 .trybot p { font-size: .96rem; margin: 0 0 1rem; }
 .trybot__btn { margin-bottom: .8rem; }
 
-/* тло блоку бірюзове, тому бірюзова кнопка на ньому не читається */
-.trybot .btn { background: #fff; color: var(--accent-2); border-color: #fff; }
-.trybot .btn:hover { background: #fff; color: var(--accent-2); box-shadow: 0 6px 18px rgba(0, 0, 0, .22); }
-
 .trybot__note {
-  font-size: .85rem; color: rgba(255, 255, 255, .58);
+  font-size: .85rem; color: var(--ink-3);
   margin: 0;
 }
 
@@ -517,13 +517,14 @@ details.more[open] > summary { margin-bottom: .4rem; }
 .trybot__qr {
   display: flex; align-items: center; gap: .9rem;
   margin-top: 1.2rem; padding-top: 1.1rem;
-  border-top: 1px solid rgba(255, 255, 255, .14);
+  border-top: 1px solid var(--accent-line);
 }
 .trybot__qr img {
   flex: none; width: 104px; height: auto;
   border-radius: 8px; padding: 7px; background: #fff;
+  border: 1px solid var(--accent-line);
 }
-.trybot__qr p { font-size: .85rem; color: rgba(255, 255, 255, .58); margin: 0; }
+.trybot__qr p { font-size: .85rem; color: var(--ink-3); margin: 0; }
 
 /* на телефоні QR зайвий — Telegram відкриється прямо з кнопки */
 @media (max-width: 619px) { .trybot__qr { display: none; } }
@@ -634,22 +635,21 @@ details.more[open] > summary { margin-bottom: .4rem; }
 
 /* --- CTA band ----------------------------------------------------------- */
 .cta {
-  background: linear-gradient(135deg, var(--deep-1) 0%, var(--deep-2) 100%);
-  color: rgba(255, 255, 255, .85);
+  background: var(--accent-bg);
+  color: var(--ink-2);
+  border: 1px solid var(--accent-line);
   border-radius: var(--radius);
   padding: clamp(1.8rem, 5vw, 3.2rem);
   text-align: center;
 }
-.cta h2 { color: #fff; font-size: clamp(1.4rem, 3.4vw, 2.1rem); }
+.cta h2 { color: var(--ink); font-size: clamp(1.4rem, 3.4vw, 2.1rem); }
 .cta p { max-width: 56ch; margin-inline: auto; }
 .cta__actions { display: flex; flex-wrap: wrap; gap: .8rem; justify-content: center; margin-top: 1.6rem; }
 
-/* Блок CTA тепер сам бірюзовий, тому бірюзова кнопка на ньому зливалася б.
-   Головна дія стає білою, другорядна — прозорою з білою рамкою. */
-.cta .btn { background: #fff; color: var(--accent-2); border-color: #fff; }
-.cta .btn:hover { background: #fff; color: var(--accent-2); box-shadow: 0 6px 18px rgba(0, 0, 0, .22); }
-.cta .btn--onlight { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .55); }
-.cta .btn--onlight:hover { background: rgba(255, 255, 255, .12); color: #fff; border-color: #fff; box-shadow: none; }
+/* Головна дія — звичайна бірюзова кнопка (тло панелі світле, вона читається).
+   Другорядна — біла з рамкою в тон панелі. */
+.cta .btn--onlight { background: #fff; color: var(--ink); border-color: var(--accent-line); }
+.cta .btn--onlight:hover { background: #fff; color: var(--ink); border-color: #9bd0d8; box-shadow: var(--shadow); }
 
 /* --- footer ------------------------------------------------------------- */
 .site-foot {
