@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 788" width="1400" height="788" role="img"
+     aria-label="Кожному своє: керівник отримує зведені показники й тривоги, менеджер — свої замовлення й дебіторку, бухгалтерія — свої ділянки обліку.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f9fc"/>
+      <stop offset="1" stop-color="#e3ecf7"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1b2740" flood-opacity=".10"/>
+    </filter>
+    <filter id="sh-s" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1b2740" flood-opacity=".09"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="788" fill="url(#bg)"/>
+  <circle cx="1340" cy="740" r="190" fill="#d9e7f5" opacity=".45"/>
+  <circle cx="60" cy="60" r="150" fill="#dbeff2" opacity=".5"/>
+  <text x="1310" y="92" font-family="Lato, Inter, Arial, sans-serif" font-size="25" font-weight="900" letter-spacing="3" text-anchor="end" fill="#1b2740">VLAS<tspan dx="7" fill="#0b7c8a">PRO</tspan></text>
+  <text x="90" y="188" font-family="'Roboto Slab', Georgia, serif" font-size="52" font-weight="700" fill="#1b2740" text-anchor="start">Кожному — своє</text>
+  <rect x="90" y="220" width="84" height="5" rx="2.5" fill="#0b7c8a"/>
+  <g filter="url(#sh)"><rect x="90" y="310" width="393" height="356" rx="18" fill="#ffffff"/></g>
+  <circle cx="162" cy="384" r="34" fill="#e6f4f6"/>
+  <circle cx="162" cy="375.84" r="10.54" fill="#0b7c8a" opacity=".75"/>
+  <path d="M142.96 401.68 a 19.040000000000003 19.040000000000003 0 0 1 38.080000000000005 0 z" fill="#0b7c8a" opacity=".75"/>
+  <text x="220" y="378" font-family="'Roboto Slab', Georgia, serif" font-size="27" font-weight="700" fill="#1b2740" text-anchor="start">Керівник</text>
+  <text x="220" y="406" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">Зведені показники</text>
+  <text x="220" y="434" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">й тривоги</text>
+  <path d="M126 462 H 447" stroke="#e4ecf4" stroke-width="2"/>
+  <rect x="126" y="472" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M146 490 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="182" y="498" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">Дебіторка</text>
+  <rect x="126" y="528" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M146 546 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="182" y="554" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">План-факт</text>
+  <rect x="126" y="584" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M146 602 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="182" y="610" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">Запаси</text>
+  <g filter="url(#sh)"><rect x="499" y="310" width="393" height="356" rx="18" fill="#ffffff"/></g>
+  <circle cx="571" cy="384" r="34" fill="#e6f4f6"/>
+  <circle cx="571" cy="375.84" r="10.54" fill="#0b7c8a" opacity=".75"/>
+  <path d="M551.96 401.68 a 19.040000000000003 19.040000000000003 0 0 1 38.080000000000005 0 z" fill="#0b7c8a" opacity=".75"/>
+  <text x="629" y="378" font-family="'Roboto Slab', Georgia, serif" font-size="27" font-weight="700" fill="#1b2740" text-anchor="start">Менеджер</text>
+  <text x="629" y="406" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">Його замовлення</text>
+  <text x="629" y="434" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">і його дебіторка</text>
+  <path d="M535 462 H 856" stroke="#e4ecf4" stroke-width="2"/>
+  <rect x="535" y="472" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M555 490 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="591" y="498" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">Статуси</text>
+  <rect x="535" y="528" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M555 546 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="591" y="554" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">Оплати</text>
+  <rect x="535" y="584" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M555 602 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="591" y="610" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">Відвантаження</text>
+  <g filter="url(#sh)"><rect x="908" y="310" width="393" height="356" rx="18" fill="#ffffff"/></g>
+  <circle cx="980" cy="384" r="34" fill="#e6f4f6"/>
+  <circle cx="980" cy="375.84" r="10.54" fill="#0b7c8a" opacity=".75"/>
+  <path d="M960.96 401.68 a 19.040000000000003 19.040000000000003 0 0 1 38.080000000000005 0 z" fill="#0b7c8a" opacity=".75"/>
+  <text x="1038" y="378" font-family="'Roboto Slab', Georgia, serif" font-size="27" font-weight="700" fill="#1b2740" text-anchor="start">Бухгалтерія</text>
+  <text x="1038" y="406" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">Свої ділянки</text>
+  <text x="1038" y="434" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">обліку</text>
+  <path d="M944 462 H 1265" stroke="#e4ecf4" stroke-width="2"/>
+  <rect x="944" y="472" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M964 490 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1000" y="498" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">Залишки на рахунках</text>
+  <rect x="944" y="528" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M964 546 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1000" y="554" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">Касові зміни</text>
+  <rect x="944" y="584" width="321" height="40" rx="12" fill="#e6f4f6"/>
+  <path d="M964 602 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1000" y="610" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="700" fill="#086673" text-anchor="start">Стан бази</text>
+  <text x="90" y="722" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#58657e" text-anchor="start">Це не загальна розсилка одного звіту на всіх, а персоналізація за ролями.</text>
+</svg>

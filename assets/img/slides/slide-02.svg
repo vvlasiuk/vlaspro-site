@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 788" width="1400" height="788" role="img"
+     aria-label="Проблема: по дані треба йти в базу самому — відкрити систему, згадати звіт, виставити відбори; про критичну подію дізнаються запізно.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f9fc"/>
+      <stop offset="1" stop-color="#e3ecf7"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1b2740" flood-opacity=".10"/>
+    </filter>
+    <filter id="sh-s" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1b2740" flood-opacity=".09"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="788" fill="url(#bg)"/>
+  <circle cx="1340" cy="740" r="190" fill="#d9e7f5" opacity=".45"/>
+  <circle cx="60" cy="60" r="150" fill="#dbeff2" opacity=".5"/>
+  <text x="1310" y="92" font-family="Lato, Inter, Arial, sans-serif" font-size="25" font-weight="900" letter-spacing="3" text-anchor="end" fill="#1b2740">VLAS<tspan dx="7" fill="#0b7c8a">PRO</tspan></text>
+  <text x="90" y="188" font-family="'Roboto Slab', Georgia, serif" font-size="52" font-weight="700" fill="#1b2740" text-anchor="start">По дані треба йти самому</text>
+  <rect x="90" y="220" width="84" height="5" rx="2.5" fill="#0b7c8a"/>
+  <g filter="url(#sh)"><rect x="90" y="300" width="700" height="112" rx="18" fill="#ffffff"/></g>
+  <circle cx="148" cy="356" r="24" fill="#eef4f9"/>
+  <rect x="136" y="354" width="24" height="5" rx="2.5" fill="#9db2c8"/>
+  <text x="196" y="348" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#41506b" text-anchor="start">Відкрити систему, згадати потрібний звіт,</text>
+  <text x="196" y="380" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#58657e" text-anchor="start">виставити відбори — і так щоразу.</text>
+  <g filter="url(#sh)"><rect x="90" y="436" width="700" height="112" rx="18" fill="#ffffff"/></g>
+  <circle cx="148" cy="492" r="24" fill="#eef4f9"/>
+  <rect x="136" y="490" width="24" height="5" rx="2.5" fill="#9db2c8"/>
+  <text x="196" y="484" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#41506b" text-anchor="start">Про критичну подію керівник дізнається,</text>
+  <text x="196" y="516" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#58657e" text-anchor="start">коли вона вже сталася.</text>
+  <g filter="url(#sh)"><rect x="90" y="572" width="700" height="112" rx="18" fill="#ffffff"/></g>
+  <circle cx="148" cy="628" r="24" fill="#eef4f9"/>
+  <rect x="136" y="626" width="24" height="5" rx="2.5" fill="#9db2c8"/>
+  <text x="196" y="620" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#41506b" text-anchor="start">Хтось щоранку вивантажує той самий звіт,</text>
+  <text x="196" y="652" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#58657e" text-anchor="start">щоб переслати його в чат руками.</text>
+  <g filter="url(#sh)"><rect x="880" y="300" width="430" height="384" rx="22" fill="#2b3e59"/></g>
+  <circle cx="918" cy="326" r="5" fill="#566b88"/>
+  <circle cx="936" cy="326" r="5" fill="#566b88"/>
+  <circle cx="954" cy="326" r="5" fill="#566b88"/>
+  <rect x="976" y="321" width="90" height="10" rx="5" fill="#44597a"/>
+  <rect x="896" y="346" width="398" height="322" rx="12" fill="#ffffff"/>
+  <rect x="926" y="380" width="150" height="12" rx="6" fill="#cfdbe8"/>
+  <rect x="926" y="404" width="96" height="9" rx="4.5" fill="#dfe8f1"/>
+  <rect x="926" y="448" width="160" height="11" rx="5.5" fill="#dfe8f1"/>
+  <rect x="1128" y="448" width="110" height="11" rx="5.5" fill="#e4edf5"/>
+  <rect x="926" y="486" width="148" height="11" rx="5.5" fill="#dfe8f1"/>
+  <rect x="1128" y="486" width="101" height="11" rx="5.5" fill="#e4edf5"/>
+  <rect x="926" y="524" width="136" height="11" rx="5.5" fill="#dfe8f1"/>
+  <rect x="1128" y="524" width="92" height="11" rx="5.5" fill="#e4edf5"/>
+  <rect x="926" y="562" width="124" height="11" rx="5.5" fill="#dfe8f1"/>
+  <rect x="1128" y="562" width="83" height="11" rx="5.5" fill="#e4edf5"/>
+  <rect x="926" y="600" width="112" height="11" rx="5.5" fill="#dfe8f1"/>
+  <rect x="1128" y="600" width="74" height="11" rx="5.5" fill="#e4edf5"/>
+  <g filter="url(#sh-s)"><circle cx="1278" cy="636" r="44" fill="#0b7c8a"/></g>
+  <circle cx="1278" cy="636" r="20" fill="none" stroke="#ffffff" stroke-width="4"/>
+  <path d="M1278 622 V 636 L 1288 643" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 788" width="1400" height="788" role="img"
+     aria-label="Як працює модуль: привід, облікова база, інтеграційний шар, канал доставки, отримувач — п’ять кроків одного маршруту.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f9fc"/>
+      <stop offset="1" stop-color="#e3ecf7"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1b2740" flood-opacity=".10"/>
+    </filter>
+    <filter id="sh-s" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1b2740" flood-opacity=".09"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="788" fill="url(#bg)"/>
+  <circle cx="1340" cy="740" r="190" fill="#d9e7f5" opacity=".45"/>
+  <circle cx="60" cy="60" r="150" fill="#dbeff2" opacity=".5"/>
+  <text x="1310" y="92" font-family="Lato, Inter, Arial, sans-serif" font-size="25" font-weight="900" letter-spacing="3" text-anchor="end" fill="#1b2740">VLAS<tspan dx="7" fill="#0b7c8a">PRO</tspan></text>
+  <text x="90" y="188" font-family="'Roboto Slab', Georgia, serif" font-size="52" font-weight="700" fill="#1b2740" text-anchor="start">Як це працює</text>
+  <rect x="90" y="220" width="84" height="5" rx="2.5" fill="#0b7c8a"/>
+  <g filter="url(#sh)"><rect x="90" y="320" width="224" height="268" rx="18" fill="#ffffff"/></g>
+  <circle cx="134" cy="376" r="26" fill="#e6f4f6"/>
+  <text x="134" y="385" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="24" font-weight="700" fill="#086673" text-anchor="middle">1</text>
+  <text x="114" y="450" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b2740" text-anchor="start">Привід</text>
+  <text x="114" y="492" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">Час за розкладом</text>
+  <text x="114" y="522" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">або подія в базі</text>
+  <path d="M316 454 H 326" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M326 448 L 335 454 L 326 460 Z" fill="#0b7c8a"/>
+  <g filter="url(#sh)"><rect x="336" y="320" width="224" height="268" rx="18" fill="#ffffff"/></g>
+  <circle cx="380" cy="376" r="26" fill="#e6f4f6"/>
+  <text x="380" y="385" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="24" font-weight="700" fill="#086673" text-anchor="middle">2</text>
+  <text x="360" y="450" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b2740" text-anchor="start">Облікова база</text>
+  <text x="360" y="492" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">Дані формують</text>
+  <text x="360" y="522" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">штатні механізми</text>
+  <path d="M562 454 H 572" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M572 448 L 581 454 L 572 460 Z" fill="#0b7c8a"/>
+  <g filter="url(#sh)"><rect x="582" y="320" width="224" height="268" rx="18" fill="#ffffff"/></g>
+  <circle cx="626" cy="376" r="26" fill="#e6f4f6"/>
+  <text x="626" y="385" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="24" font-weight="700" fill="#086673" text-anchor="middle">3</text>
+  <text x="606" y="450" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b2740" text-anchor="start">Інтеграційний шар</text>
+  <text x="606" y="492" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">Метод 1С визначає,</text>
+  <text x="606" y="522" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">кому це адресовано</text>
+  <path d="M808 454 H 818" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M818 448 L 827 454 L 818 460 Z" fill="#0b7c8a"/>
+  <g filter="url(#sh)"><rect x="828" y="320" width="224" height="268" rx="18" fill="#ffffff"/></g>
+  <circle cx="872" cy="376" r="26" fill="#e6f4f6"/>
+  <text x="872" y="385" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="24" font-weight="700" fill="#086673" text-anchor="middle">4</text>
+  <text x="852" y="450" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b2740" text-anchor="start">Канал доставки</text>
+  <text x="852" y="492" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">Бот надсилає текст,</text>
+  <text x="852" y="522" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">графік або файл</text>
+  <path d="M1054 454 H 1064" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M1064 448 L 1073 454 L 1064 460 Z" fill="#0b7c8a"/>
+  <g filter="url(#sh)"><rect x="1074" y="320" width="224" height="268" rx="18" fill="#ffffff"/></g>
+  <circle cx="1118" cy="376" r="26" fill="#e6f4f6"/>
+  <text x="1118" y="385" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="24" font-weight="700" fill="#086673" text-anchor="middle">5</text>
+  <text x="1098" y="450" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="18" font-weight="700" fill="#1b2740" text-anchor="start">Отримувач</text>
+  <text x="1098" y="492" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">Бачить саме свої</text>
+  <text x="1098" y="522" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="19" font-weight="400" fill="#58657e" text-anchor="start">показники — одразу</text>
+  <text x="90" y="666" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#58657e" text-anchor="start">Той самий шлях, яким ходить будь-який наш інтеграційний сценарій.</text>
+  <text x="90" y="702" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="400" fill="#58657e" text-anchor="start">Зворотний бік теж працює: отримувач може попросити звіт сам — командою в чаті.</text>
+</svg>

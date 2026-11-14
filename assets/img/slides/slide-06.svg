@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 788" width="1400" height="788" role="img"
+     aria-label="Що це дає компанії: керівник бачить стан справ без відкривання бази, про проблему відомо одразу, ручна розсилка зникає, нових робочих місць не треба.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f9fc"/>
+      <stop offset="1" stop-color="#e3ecf7"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1b2740" flood-opacity=".10"/>
+    </filter>
+    <filter id="sh-s" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1b2740" flood-opacity=".09"/>
+    </filter>
+  </defs>
+  <rect width="1400" height="788" fill="url(#bg)"/>
+  <circle cx="1340" cy="740" r="190" fill="#d9e7f5" opacity=".45"/>
+  <circle cx="60" cy="60" r="150" fill="#dbeff2" opacity=".5"/>
+  <text x="1310" y="92" font-family="Lato, Inter, Arial, sans-serif" font-size="25" font-weight="900" letter-spacing="3" text-anchor="end" fill="#1b2740">VLAS<tspan dx="7" fill="#0b7c8a">PRO</tspan></text>
+  <text x="90" y="188" font-family="'Roboto Slab', Georgia, serif" font-size="52" font-weight="700" fill="#1b2740" text-anchor="start">Що це дає компанії</text>
+  <rect x="90" y="220" width="84" height="5" rx="2.5" fill="#0b7c8a"/>
+  <g filter="url(#sh)"><rect x="90" y="300" width="598" height="120" rx="18" fill="#ffffff"/></g>
+  <circle cx="152" cy="360" r="26" fill="#e6f4f6"/>
+  <path d="M140 354 l 5.5 5.5 l 12.100000000000001 -13.200000000000001" fill="none" stroke="#0b7c8a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="200" y="352" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="700" fill="#1b2740" text-anchor="start">Керівник</text>
+  <text x="200" y="384" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="21" font-weight="400" fill="#58657e" text-anchor="start">Стан справ без відкривання бази</text>
+  <g filter="url(#sh)"><rect x="712" y="300" width="598" height="120" rx="18" fill="#ffffff"/></g>
+  <circle cx="774" cy="360" r="26" fill="#e6f4f6"/>
+  <path d="M762 354 l 5.5 5.5 l 12.100000000000001 -13.200000000000001" fill="none" stroke="#0b7c8a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="822" y="352" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="700" fill="#1b2740" text-anchor="start">Реакція</text>
+  <text x="822" y="384" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="21" font-weight="400" fill="#58657e" text-anchor="start">Про проблему відомо одразу</text>
+  <g filter="url(#sh)"><rect x="90" y="446" width="598" height="120" rx="18" fill="#ffffff"/></g>
+  <circle cx="152" cy="506" r="26" fill="#e6f4f6"/>
+  <path d="M140 500 l 5.5 5.5 l 12.100000000000001 -13.200000000000001" fill="none" stroke="#0b7c8a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="200" y="498" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="700" fill="#1b2740" text-anchor="start">Персонал</text>
+  <text x="200" y="530" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="21" font-weight="400" fill="#58657e" text-anchor="start">Ручна розсилка зникає</text>
+  <g filter="url(#sh)"><rect x="712" y="446" width="598" height="120" rx="18" fill="#ffffff"/></g>
+  <circle cx="774" cy="506" r="26" fill="#e6f4f6"/>
+  <path d="M762 500 l 5.5 5.5 l 12.100000000000001 -13.200000000000001" fill="none" stroke="#0b7c8a" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="822" y="498" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="23" font-weight="700" fill="#1b2740" text-anchor="start">Витрати</text>
+  <text x="822" y="530" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="21" font-weight="400" fill="#58657e" text-anchor="start">Без нових робочих місць</text>
+  <rect x="90" y="612" width="1220" height="96" rx="18" fill="#e6f4f6" stroke="#bfe2e7" stroke-width="2"/>
+  <text x="130" y="652" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="25" font-weight="700" fill="#1b2740" text-anchor="start">Хочете бачити свою базу в чаті?</text>
+  <text x="130" y="686" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="21" font-weight="400" fill="#41506b" text-anchor="start">Покажемо, як показники приходитимуть самі.</text>
+  <text x="1270" y="652" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="22" font-weight="700" fill="#086673" text-anchor="end">vlaspro.com.ua</text>
+  <text x="1270" y="686" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#41506b" text-anchor="end">+38 (067) 267-58-20 · Telegram: VLAS_PRO_UA</text>
+</svg>
