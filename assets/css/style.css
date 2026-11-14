@@ -383,14 +383,35 @@ li::marker { color: var(--accent); }
 .case { padding-block: clamp(2.2rem, 6vw, 4rem); border-top: 1px solid var(--line); }
 .case:first-of-type { border-top: 0; }
 
+/* Заголовок кейсу стоїть над обома колонками, а не в текстовій: інакше
+   картинка 16:10 (~320 px) опинялася навпроти ~630 px тексту і під нею
+   лишалося близько 300 px порожнечі. Разом із підсумковим фактом, який
+   переїхав під картинку, колонки вирівнялися майже в нуль. */
+.case__head { margin-bottom: clamp(1.1rem, 2.5vw, 1.6rem); }
+.case__head h2 { margin: 0; }
+
 .case__grid {
   display: grid; align-items: start;
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(1.4rem, 4vw, 3rem);
 }
+.case__col { display: grid; align-content: start; gap: clamp(.9rem, 2vw, 1.2rem); }
 @media (min-width: 900px) {
   .case__grid { grid-template-columns: minmax(0, 47%) minmax(0, 1fr); }
-  .case--flip .case__media { order: 2; }
+  .case--flip .case__col { order: 2; }
+}
+/* На вузькому екрані колонок немає, і факт мусить читатися після переваг,
+   а не одразу за картинкою: половина фактів без опису кейсу незрозуміла.
+   Обидві обгортки «розчиняються», порядок задається поелементно, а відступи
+   лишаються на власних margin елементів — звідси gap: 0. */
+@media (max-width: 899px) {
+  .case__grid { gap: 0; }
+  .case__col, .case__body { display: contents; }
+  .case__grid .case__media { order: 1; margin-bottom: clamp(1.4rem, 4vw, 2rem); }
+  .case__lede { order: 2; }
+  .case__gains { order: 3; }
+  .case__result { order: 4; margin-bottom: 1.4rem; }
+  .case__body > p:last-child { order: 5; }
 }
 
 /* Ілюстрації кейсів намальовані в різний час і мали чотири різні пропорції —
@@ -447,10 +468,11 @@ li::marker { color: var(--accent); }
 }
 .case__gains b { color: var(--ink); font-weight: 700; }
 
-/* Підсумковий факт — світла панель із бічною рискою, а не темна плашка:
-   він має завершувати анонс, а не перебивати собою картинку кейсу. */
+/* Підсумковий факт — світла панель із бічною рискою, а не темна плашка.
+   Стоїть під картинкою, у її колонці: там він і завершує анонс, і забирає
+   порожнє поле, яке раніше лишалося під ілюстрацією. */
 .case__result {
-  margin: 0 0 1.4rem; padding: .8rem 1.1rem;
+  margin: 0; padding: .8rem 1.1rem;
   background: var(--accent-bg); border-left: 3px solid var(--accent);
   border-radius: 0 10px 10px 0;
   font-size: .97rem; color: var(--ink-2);
