@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img"
+     aria-label="Документ в обліковій базі з виправленими реквізитами і журнал змін: хто, коли, значення до і після.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f5f9fc"/>
+      <stop offset="1" stop-color="#e3ecf7"/>
+    </linearGradient>
+    <filter id="sh" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#1b2740" flood-opacity=".10"/>
+    </filter>
+    <filter id="sh-s" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1b2740" flood-opacity=".09"/>
+    </filter>
+    <clipPath id="screen">
+      <rect x="592" y="116" width="552" height="546" rx="16"/>
+    </clipPath>
+  </defs>
+
+  <!-- tlo -->
+  <rect width="1200" height="750" fill="url(#bg)"/>
+  <circle cx="70" cy="80" r="180" fill="#dbeff2" opacity=".55"/>
+  <circle cx="1150" cy="700" r="190" fill="#d9e7f5" opacity=".5"/>
+
+  <!-- ===== dokument v oblikovii bazi ===== -->
+  <g transform="rotate(-4 266 375)" opacity=".5">
+    <g filter="url(#sh-s)"><rect x="60" y="146" width="420" height="474" rx="20" fill="#ffffff"/></g>
+  </g>
+  <g filter="url(#sh)"><rect x="56" y="130" width="420" height="490" rx="20" fill="#ffffff"/></g>
+
+  <rect x="92" y="166" width="46" height="58" rx="9" fill="#e6f4f6" stroke="#0b7c8a" stroke-width="2.6"/>
+  <rect x="103" y="184" width="24" height="6" rx="3" fill="#0b7c8a" opacity=".55"/>
+  <rect x="103" y="198" width="24" height="6" rx="3" fill="#0b7c8a" opacity=".35"/>
+  <rect x="158" y="174" width="186" height="14" rx="7" fill="#cfdbe8"/>
+  <rect x="158" y="200" width="124" height="11" rx="5.5" fill="#dfe8f1"/>
+
+  <rect x="96" y="285" width="118" height="12" rx="6" fill="#dfe8f1"/>
+  <rect x="250" y="285" width="120" height="12" rx="6" fill="#e4edf5"/>
+  <rect x="80" y="326" width="372" height="34" rx="8" fill="#e6f4f6"/>
+  <rect x="96" y="337" width="118" height="12" rx="6" fill="#dfe8f1"/>
+  <rect x="250" y="337" width="120" height="12" rx="6" fill="#a9d3d9"/>
+  <g transform="translate(404 331)"><path d="M0 18 L5 16.5 L17.5 4 L13.5 0 L1 12.5 Z" fill="#0b7c8a" opacity=".8"/></g>
+  <rect x="96" y="389" width="118" height="12" rx="6" fill="#dfe8f1"/>
+  <rect x="250" y="389" width="120" height="12" rx="6" fill="#e4edf5"/>
+  <rect x="96" y="441" width="118" height="12" rx="6" fill="#dfe8f1"/>
+  <rect x="250" y="441" width="120" height="12" rx="6" fill="#e4edf5"/>
+  <rect x="80" y="482" width="372" height="34" rx="8" fill="#e6f4f6"/>
+  <rect x="96" y="493" width="118" height="12" rx="6" fill="#dfe8f1"/>
+  <rect x="250" y="493" width="120" height="12" rx="6" fill="#a9d3d9"/>
+  <g transform="translate(404 487)"><path d="M0 18 L5 16.5 L17.5 4 L13.5 0 L1 12.5 Z" fill="#0b7c8a" opacity=".8"/></g>
+  <rect x="96" y="545" width="118" height="12" rx="6" fill="#dfe8f1"/>
+  <rect x="250" y="545" width="120" height="12" rx="6" fill="#e4edf5"/>
+
+  <!-- oliviec: pravka -->
+  <g filter="url(#sh-s)"><circle cx="472" cy="176" r="36" fill="#0b7c8a"/></g>
+  <g transform="rotate(45 472 176)">
+    <rect x="466" y="156" width="12" height="28" rx="2" fill="#ffffff"/>
+    <rect x="466" y="163" width="12" height="2.6" fill="#0b7c8a" opacity=".55"/>
+    <path d="M466 184 H 478 L 472 196 Z" fill="#ffffff"/>
+  </g>
+
+  <path d="M500 375 H 544" stroke="#0b7c8a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M544 366 L 560 375 L 544 384 Z" fill="#0b7c8a"/>
+
+  <!-- ===== zhurnal zmin u oblikovii systemi ===== -->
+  <g filter="url(#sh)"><rect x="576" y="72" width="584" height="606" rx="26" fill="#2b3e59"/></g>
+  <circle cx="606" cy="94" r="5" fill="#566b88"/>
+  <circle cx="624" cy="94" r="5" fill="#566b88"/>
+  <circle cx="642" cy="94" r="5" fill="#566b88"/>
+  <rect x="664" y="89" width="110" height="10" rx="5" fill="#44597a"/>
+  <rect x="592" y="116" width="552" height="546" rx="16" fill="#ffffff"/>
+
+  <g clip-path="url(#screen)">
+    <rect x="622" y="146" width="46" height="58" rx="9" fill="#e6f4f6" stroke="#0b7c8a" stroke-width="2.6"/>
+    <rect x="633" y="164" width="24" height="6" rx="3" fill="#0b7c8a" opacity=".55"/>
+    <rect x="633" y="178" width="24" height="6" rx="3" fill="#0b7c8a" opacity=".35"/>
+    <rect x="688" y="154" width="186" height="14" rx="7" fill="#cfdbe8"/>
+    <rect x="688" y="180" width="122" height="11" rx="5.5" fill="#dfe8f1"/>
+
+    <g filter="url(#sh-s)"><circle cx="1084" cy="176" r="32" fill="#0b7c8a"/></g>
+    <circle cx="1084" cy="176" r="14" fill="none" stroke="#ffffff" stroke-width="3.2"/>
+    <path d="M1084 166 V 176 L 1091 181" fill="none" stroke="#ffffff" stroke-width="3.2"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="622" y="228" width="492" height="2" fill="#e8eff6"/>
+    <path d="M624 280 V 586" stroke="#cfe0e6" stroke-width="3" stroke-linecap="round"/>
+
+    <rect x="648" y="252" width="466" height="84" rx="14" fill="#eef4f9"/>
+    <circle cx="624" cy="280" r="8" fill="#0b7c8a" opacity="1.0"/>
+    <circle cx="684" cy="278" r="18" fill="#e6f4f6"/>
+    <circle cx="684" cy="273" r="6.2" fill="#0b7c8a" opacity=".75"/>
+    <path d="M673 289 a 11 11 0 0 1 22 0 z" fill="#0b7c8a" opacity=".75"/>
+    <rect x="714" y="267" width="110" height="10" rx="5" fill="#cfdbe8"/>
+    <rect x="714" y="285" width="74" height="8" rx="4" fill="#dfe8f1"/>
+    <circle cx="1026" cy="274" r="8" fill="none" stroke="#b9c8d8" stroke-width="2"/>
+    <path d="M1026 269 V 274 L 1030 277" fill="none" stroke="#b9c8d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1042" y="270" width="54" height="8" rx="4" fill="#dfe8f1"/>
+    <rect x="714" y="306" width="104" height="12" rx="6" fill="#dfe8f1"/>
+    <path d="M710 312 H 822" stroke="#b4c3d2" stroke-width="2" stroke-linecap="round"/>
+    <path d="M836 312 H 850" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M850 306.5 L 860 312 L 850 317.5 Z" fill="#0b7c8a"/>
+    <rect x="872" y="306" width="126" height="12" rx="6" fill="#a9d3d9"/>
+
+    <rect x="648" y="354" width="466" height="84" rx="14" fill="#eef4f9"/>
+    <circle cx="624" cy="382" r="8" fill="#0b7c8a" opacity="0.72"/>
+    <circle cx="684" cy="380" r="18" fill="#e6f4f6"/>
+    <circle cx="684" cy="375" r="6.2" fill="#0b7c8a" opacity=".75"/>
+    <path d="M673 391 a 11 11 0 0 1 22 0 z" fill="#0b7c8a" opacity=".75"/>
+    <rect x="714" y="369" width="110" height="10" rx="5" fill="#cfdbe8"/>
+    <rect x="714" y="387" width="74" height="8" rx="4" fill="#dfe8f1"/>
+    <circle cx="1026" cy="376" r="8" fill="none" stroke="#b9c8d8" stroke-width="2"/>
+    <path d="M1026 371 V 376 L 1030 379" fill="none" stroke="#b9c8d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1042" y="372" width="54" height="8" rx="4" fill="#dfe8f1"/>
+    <rect x="714" y="408" width="92" height="12" rx="6" fill="#dfe8f1"/>
+    <path d="M710 414 H 810" stroke="#b4c3d2" stroke-width="2" stroke-linecap="round"/>
+    <path d="M836 414 H 850" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M850 408.5 L 860 414 L 850 419.5 Z" fill="#0b7c8a"/>
+    <rect x="872" y="408" width="108" height="12" rx="6" fill="#a9d3d9"/>
+
+    <rect x="648" y="456" width="466" height="84" rx="14" fill="#eef4f9"/>
+    <circle cx="624" cy="484" r="8" fill="#0b7c8a" opacity="0.5"/>
+    <circle cx="684" cy="482" r="18" fill="#e6f4f6"/>
+    <circle cx="684" cy="477" r="6.2" fill="#0b7c8a" opacity=".75"/>
+    <path d="M673 493 a 11 11 0 0 1 22 0 z" fill="#0b7c8a" opacity=".75"/>
+    <rect x="714" y="471" width="110" height="10" rx="5" fill="#cfdbe8"/>
+    <rect x="714" y="489" width="74" height="8" rx="4" fill="#dfe8f1"/>
+    <circle cx="1026" cy="478" r="8" fill="none" stroke="#b9c8d8" stroke-width="2"/>
+    <path d="M1026 473 V 478 L 1030 481" fill="none" stroke="#b9c8d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1042" y="474" width="54" height="8" rx="4" fill="#dfe8f1"/>
+    <rect x="714" y="510" width="110" height="12" rx="6" fill="#dfe8f1"/>
+    <path d="M710 516 H 828" stroke="#b4c3d2" stroke-width="2" stroke-linecap="round"/>
+    <path d="M836 516 H 850" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M850 510.5 L 860 516 L 850 521.5 Z" fill="#0b7c8a"/>
+    <rect x="872" y="510" width="134" height="12" rx="6" fill="#bedfe4"/>
+
+    <rect x="648" y="558" width="466" height="84" rx="14" fill="#eef4f9"/>
+    <circle cx="624" cy="586" r="8" fill="#0b7c8a" opacity="0.34"/>
+    <circle cx="684" cy="584" r="18" fill="#e6f4f6"/>
+    <circle cx="684" cy="579" r="6.2" fill="#0b7c8a" opacity=".75"/>
+    <path d="M673 595 a 11 11 0 0 1 22 0 z" fill="#0b7c8a" opacity=".75"/>
+    <rect x="714" y="573" width="110" height="10" rx="5" fill="#cfdbe8"/>
+    <rect x="714" y="591" width="74" height="8" rx="4" fill="#dfe8f1"/>
+    <circle cx="1026" cy="580" r="8" fill="none" stroke="#b9c8d8" stroke-width="2"/>
+    <path d="M1026 575 V 580 L 1030 583" fill="none" stroke="#b9c8d8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1042" y="576" width="54" height="8" rx="4" fill="#dfe8f1"/>
+    <rect x="714" y="612" width="84" height="12" rx="6" fill="#dfe8f1"/>
+    <path d="M710 618 H 802" stroke="#b4c3d2" stroke-width="2" stroke-linecap="round"/>
+    <path d="M836 618 H 850" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M850 612.5 L 860 618 L 850 623.5 Z" fill="#0b7c8a"/>
+    <rect x="872" y="612" width="96" height="12" rx="6" fill="#cfe6ea"/>
+  </g>
+</svg>
