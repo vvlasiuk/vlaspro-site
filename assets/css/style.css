@@ -393,15 +393,29 @@ li::marker { color: var(--accent); }
   .case--flip .case__media { order: 2; }
 }
 
+/* Ілюстрації кейсів намальовані в різний час і мали чотири різні пропорції —
+   від 1:1 до 16:9, через що колонки кейсів виходили різної висоти. Рамка
+   задає одну пропорцію 16:10 для всіх; самі файли теж приведені до 1200x750,
+   тож object-fit нічого не обрізає, а лише страхує майбутні картинки. */
 .case__media {
   position: sticky; top: 90px;
+  aspect-ratio: 16 / 10;
   border-radius: var(--radius); overflow: hidden;
   background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow);
+}
+.case__media picture { display: block; height: 100%; }
+.case__media > img,
+.case__media picture > img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: var(--img-pos, center);
 }
 @media (max-width: 899px) { .case__media { position: static; } }
 
 /* the slider brings its own frame */
-.case__media--plain { position: static; border: 0; background: none; box-shadow: none; overflow: visible; }
+.case__media--plain {
+  position: static; aspect-ratio: auto;
+  border: 0; background: none; box-shadow: none; overflow: visible;
+}
 
 .case__badge {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -416,6 +430,32 @@ li::marker { color: var(--accent); }
   font-family: var(--sans); font-weight: 700; color: var(--ink);
   letter-spacing: .01em;
 }
+
+/* --- анонс кейсу: єдиний каркас для всіх п’яти --------------------------- */
+/* Задача двома реченнями, три рядки результату, один підсумковий факт
+   і одна кнопка. Раніше кожен кейс був оформлений по-своєму — від суцільної
+   прози до самих булітів, — і сторінка читалася як набір різних сторінок. */
+.case__lede { margin: 0 0 1.1rem; }
+
+.case__gains { list-style: none; padding: 0; margin: 0 0 1.2rem; display: grid; gap: .55rem; }
+.case__gains li { position: relative; padding-left: 1.6rem; font-size: .97rem; color: var(--ink-2); }
+.case__gains li::before {
+  content: ''; position: absolute; left: .15rem; top: .42em;
+  width: .62rem; height: .34rem;
+  border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+.case__gains b { color: var(--ink); font-weight: 700; }
+
+/* Підсумковий факт — світла панель із бічною рискою, а не темна плашка:
+   він має завершувати анонс, а не перебивати собою картинку кейсу. */
+.case__result {
+  margin: 0 0 1.4rem; padding: .8rem 1.1rem;
+  background: var(--accent-bg); border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  font-size: .97rem; color: var(--ink-2);
+}
+.case__result b { color: var(--accent-2); }
 
 /* expandable detail */
 details.more { margin-top: 1.2rem; border-top: 1px dashed var(--line); }
@@ -436,44 +476,6 @@ details.more[open] > summary::after { transform: rotate(-135deg) translateY(-1px
 details.more > summary:hover { background: #d5ebee; }
 details.more[open] > summary { margin-bottom: .4rem; }
 .more__body { padding-top: .6rem; }
-
-/* --- розгорнутий кейс на всю ширину -------------------------------------- */
-/* Блок винесений із колонки кейсу і стоїть під сіткою, тож текст займає
-   всю ширину статті. Щоб рядки не розтягувалися на 1000+ px і не втрачали
-   читабельність, довгі кейси (.more--cols) розкладаються у дві колонки. */
-.case > details.more {
-  margin-top: clamp(1.4rem, 3.5vw, 2.2rem);
-  border-top: 1px dashed var(--line);
-}
-
-.case > details.more > summary { margin-top: 1.2rem; }
-
-.case > details.more .more__body {
-  margin-top: .9rem; padding: clamp(1.2rem, 3vw, 1.9rem) clamp(1.2rem, 3.5vw, 2.1rem);
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.case > details.more .more__body > :first-child { margin-top: 0; }
-.case > details.more .more__body > :last-child { margin-bottom: 0; }
-
-@media (min-width: 900px) {
-  .more--cols .more__body {
-    column-count: 2;
-    column-gap: clamp(2rem, 4.5vw, 3.4rem);
-    column-rule: 1px solid var(--line);
-  }
-  /* Абзац не рвемо, а довгий список хай перетікає між колонками — інакше
-     колонки виходять різної висоти (у кейсі 01 було 60 % заповнення проти
-     100 % зараз). Окремий пункт списку при цьому лишається цілим. */
-  .more--cols .more__body p { break-inside: avoid; }
-  .more--cols .more__body li { break-inside: avoid; }
-  .more--cols .more__body h3 { break-after: avoid; margin-top: 0; }
-  .more--cols .more__body h3 + ul,
-  .more--cols .more__body h3 + p { margin-top: .5em; }
-}
 
 /* --- блок демо-бота ------------------------------------------------------ */
 /* Блок живе і на всю ширину сторінки, і всередині вузької колонки кейсу,
