@@ -19,8 +19,9 @@
   --line:       #d3dde8;
   --accent:     #0b7c8a;
   --accent-2:   #086673;
-  /* Темні плями сторінки — тієї самої бірюзової родини, що й акцент,
-     від світлішої вгорі (смуга меню) до найглибшої внизу (підвал). */
+  /* Темні плями сторінки — тієї самої бірюзової родини, що й акцент.
+     Смуга меню і підвал беруть той самий градієнт --deep-1 → --deep-0;
+     --deep-2 і --deep-3 лишаються для глибших плям (тло слайдера кейсів). */
   /* --deep-0 — правий, світліший край смуги меню. Темніший за --accent,
      бо на ньому лежить текст пунктів меню: з --accent виходило 3.8:1. */
   --deep-0:     #0a6e7a;
@@ -677,7 +678,11 @@ details.more[open] > summary { margin-bottom: .4rem; }
 
 /* --- footer ------------------------------------------------------------- */
 .site-foot {
-  background: var(--deep-3); color: rgba(255, 255, 255, .66);
+  /* Те саме тло, що в смузі меню: сторінка закривається тим кольором,
+     яким відкрилася. Градієнт світліший за колишній --deep-3, тому текст
+     тут трохи щільніший, щоб контраст лишився не нижчим за 4.5:1. */
+  background: linear-gradient(90deg, var(--deep-1) 0%, var(--deep-0) 100%);
+  color: rgba(255, 255, 255, .84);
   padding: clamp(2.2rem, 6vw, 3.4rem) 0 1.6rem;
   font-size: .95rem;
 }
@@ -685,7 +690,7 @@ details.more[open] > summary { margin-bottom: .4rem; }
 @media (min-width: 760px) { .site-foot__grid { grid-template-columns: 1.4fr 1fr 1.2fr; } }
 
 .site-foot h2 { color: #fff; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase; font-family: var(--sans); margin-bottom: 1rem; }
-.site-foot a { color: rgba(255, 255, 255, .78); text-decoration: none; }
+.site-foot a { color: rgba(255, 255, 255, .9); text-decoration: none; }
 .site-foot a:hover { color: #9ff0f8; text-decoration: underline; }
 .site-foot ul { list-style: none; margin: 0; padding: 0; }
 .site-foot li { margin-bottom: .55rem; }
@@ -693,9 +698,9 @@ details.more[open] > summary { margin-bottom: .4rem; }
 
 .site-foot__bottom {
   margin-top: 2.2rem; padding-top: 1.2rem;
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid rgba(255, 255, 255, .16);
   display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; justify-content: space-between;
-  font-size: .87rem; color: rgba(255, 255, 255, .6);
+  font-size: .87rem; color: rgba(255, 255, 255, .82);
 }
 
 /* --- сторінка «AI-агенти та Telegram-боти» ------------------------------- */
