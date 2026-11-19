@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 788" width="1400" height="788" role="img"
-     aria-label="Кожному своє: керівник отримує зведені показники й тривоги, менеджер — свої замовлення й дебіторку, бухгалтерія — свої ділянки обліку.">
+     aria-label="Кожному своє: керівник отримує зведені показники й відхилення, менеджер — свої замовлення й дебіторку, бухгалтерія — свої ділянки обліку.">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#f5f9fc"/>
@@ -24,7 +24,7 @@
   <path d="M142.96 401.68 a 19.040000000000003 19.040000000000003 0 0 1 38.080000000000005 0 z" fill="#0b7c8a" opacity=".75"/>
   <text x="220" y="378" font-family="'Roboto Slab', Georgia, serif" font-size="27" font-weight="700" fill="#1b2740" text-anchor="start">Керівник</text>
   <text x="220" y="406" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">Зведені показники</text>
-  <text x="220" y="434" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">й тривоги</text>
+  <text x="220" y="434" font-family="Inter, 'Segoe UI', Roboto, Arial, sans-serif" font-size="20" font-weight="400" fill="#58657e" text-anchor="start">й відхилення</text>
   <path d="M126 462 H 447" stroke="#e4ecf4" stroke-width="2"/>
   <rect x="126" y="472" width="321" height="40" rx="12" fill="#e6f4f6"/>
   <path d="M146 490 l 4.25 4.25 l 9.35 -10.2" fill="none" stroke="#0b7c8a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
